@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/wedding-invitation/static/css/main.6c02a3cf.css",
+    "main.js": "/wedding-invitation/static/js/main.6ada0e6d.js",
+    "static/media/paper-texture.jpg": "/wedding-invitation/static/media/paper-texture.b9019079bae5febb76d4.jpg",
+    "static/media/6.jpg": "/wedding-invitation/static/media/6.5390a240c2591f2b6323.jpg",
+    "static/media/5.jpg": "/wedding-invitation/static/media/5.6d3598d4301f7161f3db.jpg",
+    "static/media/16.jpg": "/wedding-invitation/static/media/16.bff79e58afb62bf20751.jpg",
+    "static/media/15.jpg": "/wedding-invitation/static/media/15.cf3d463d777fd71f630c.jpg",
+    "static/media/4.jpg": "/wedding-invitation/static/media/4.65c30770266055c92e39.jpg",
+    "static/media/3.jpg": "/wedding-invitation/static/media/3.40941b01a116929d8e67.jpg",
+    "static/media/13.jpg": "/wedding-invitation/static/media/13.595428a46e570baaeaf8.jpg",
+    "static/media/14.jpg": "/wedding-invitation/static/media/14.02046091b3d95e6b94af.jpg",
+    "static/media/11.jpg": "/wedding-invitation/static/media/11.14c30d21d6f212fc84a0.jpg",
+    "static/media/2.jpg": "/wedding-invitation/static/media/2.e8e969907aeec17e7743.jpg",
+    "static/media/7.jpg": "/wedding-invitation/static/media/7.fdb97dfc188391fad497.jpg",
+    "static/media/19.jpg": "/wedding-invitation/static/media/19.3584f7d0b9d5055eb9ac.jpg",
+    "static/media/18.jpg": "/wedding-invitation/static/media/18.b756f55a30c3e90ef834.jpg",
+    "static/media/1.jpg": "/wedding-invitation/static/media/1.7125675272d50c0a3175.jpg",
+    "static/media/17.jpg": "/wedding-invitation/static/media/17.b603efbf8a952cc64a18.jpg",
+    "static/media/9.jpg": "/wedding-invitation/static/media/9.814cc665a461a13a2ba0.jpg",
+    "static/media/12.jpg": "/wedding-invitation/static/media/12.d64c549180348c97f176.jpg",
+    "static/media/10.jpg": "/wedding-invitation/static/media/10.5a773952b79657a5bae1.jpg",
+    "static/media/8.jpg": "/wedding-invitation/static/media/8.6060ac35989cf6a2ae11.jpg",
+    "static/media/kakaopay.png": "/wedding-invitation/static/media/kakaopay.a652815d3ce226eee3d4.png",
+    "index.html": "/wedding-invitation/index.html",
+    "main.6c02a3cf.css.map": "/wedding-invitation/static/css/main.6c02a3cf.css.map",
+    "main.6ada0e6d.js.map": "/wedding-invitation/static/js/main.6ada0e6d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c02a3cf.css",
+    "static/js/main.6ada0e6d.js"
+  ]
+}
