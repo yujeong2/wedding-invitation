@@ -52,8 +52,8 @@ const accountInfo = {
 
 function Account(props) {
   const [accountOpen, setAccountOpen] = useState({
-    groom: true,
-    bride: true,
+    groom: false,
+    bride: false,
   });
 
   const handleOpenAccount = (e, type) => {
@@ -115,7 +115,7 @@ function Account(props) {
                       <img src={kakaopayIcon} alt="" /> 송금
                     </div>
                     <CopyToClipboard
-                      text={item.bank}
+                      text={item.account}
                       onCopy={handleCopyAccount}
                     >
                       <div className="copy">계좌번호 복사</div>

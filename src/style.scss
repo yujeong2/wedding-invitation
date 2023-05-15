@@ -696,11 +696,11 @@
 
   .link-copy-modal {
     position: fixed;
-    top: calc(50% - 50px);
-    left: calc(50% - 110px);
+    top: calc(50% - 60px);
+    left: calc(50% - 120px);
 
-    width: 220px;
-    height: 100px;
+    width: 240px;
+    height: 120px;
 
     display: flex;
     flex-direction: column;
@@ -708,17 +708,16 @@
     align-items: center;
 
     border-radius: 10px;
-    border: 1px solid #E2D9E9;
     background: #fff;
     font-size: 15px;
 
     button {
-      margin-top: 5px;
+      margin-top: 15px;
       outline: none;
       border: none;
       border-radius: 5px;
 
-      width: 50px;
+      width: 80px;
       height: 28px;
 
       background: #a392b7;
