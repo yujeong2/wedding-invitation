@@ -1,5 +1,8 @@
-/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
+/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,
+react/destructuring-assignment, react/prop-types */
 import React, { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 import kakaopayIcon from '../assets/icons/kakaopay.png';
 
 const accountInfo = {
@@ -47,7 +50,7 @@ const accountInfo = {
   },
 };
 
-function Account() {
+function Account(props) {
   const [accountOpen, setAccountOpen] = useState({
     groom: true,
     bride: true,
@@ -69,6 +72,10 @@ function Account() {
     window.open(item.kakao);
   };
 
+  const handleCopyAccount = () => {
+    props.setCopyModal('account');
+  };
+
   return (
     <div className="account">
       <div className="title">마음 전하실 곳</div>
@@ -79,10 +86,14 @@ function Account() {
             className={`account-item ${type} ${
               accountOpen[type] ? 'open' : ''
             }`}
-            onClick={(e) => handleOpenAccount(e, type)}
-            aria-hidden="true"
           >
-            <div className="account-title">{accountInfo[type].type}</div>
+            <div
+              className="account-title"
+              aria-hidden="true"
+              onClick={(e) => handleOpenAccount(e, type)}
+            >
+              {accountInfo[type].type}
+            </div>
             <div className={`account-content ${type}`}>
               {accountInfo[type].list.map((item) => (
                 <div className="account-content-item" key={item.name}>
@@ -103,7 +114,12 @@ function Account() {
                     >
                       <img src={kakaopayIcon} alt="" /> 송금
                     </div>
-                    <div className="copy">계좌번호 복사</div>
+                    <CopyToClipboard
+                      text={item.bank}
+                      onCopy={handleCopyAccount}
+                    >
+                      <div className="copy">계좌번호 복사</div>
+                    </CopyToClipboard>
                   </div>
                 </div>
               ))}

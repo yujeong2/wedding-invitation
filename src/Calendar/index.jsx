@@ -1,4 +1,4 @@
-/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
+/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 
 function Calendar() {
@@ -41,9 +41,14 @@ function Calendar() {
         </div>
         <div className="grid">
           {calendarArray.map((week) => (
-            <div className="week">
-              {week.map((day) => (
-                <div className={day === 9 ? 'day wedding' : 'day'}>{day}</div>
+            <div className="week" key={week}>
+              {week.map((day, index) => (
+                <div
+                  key={`day_${index}`}
+                  className={day === 9 ? 'day wedding' : 'day'}
+                >
+                  {day}
+                </div>
               ))}
             </div>
           ))}

@@ -5,7 +5,7 @@ function DDay() {
   const [diffDay, setDiffDay] = useState({});
 
   const makeDiffDay = () => {
-    const masTime = new Date('2023-09-09');
+    const masTime = new Date('2023-09-09 14:30:00');
     const todayTime = new Date();
 
     const diff = masTime - todayTime;

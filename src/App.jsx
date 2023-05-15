@@ -1,5 +1,6 @@
-/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
+/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,react/no-array-index-key  */
 import React, { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Account from './Account';
 import Calendar from './Calendar';
@@ -8,12 +9,18 @@ import Information from './Information';
 import Location from './Location';
 
 import mainImg from './assets/photo/5.jpg';
-import closeIcon from './assets/icons/close (3).png';
+import closeIcon from './assets/icons/close.png';
+import linkIcon from './assets/icons/link.png';
+import kakaoIcon from './assets/icons/kakao-talk.png';
+import { github } from './assets/url';
+
 import photoList from './photo';
+
 import './style.scss';
 
 function App() {
   const [mode, setMode] = useState('default');
+  const [copyModal, setCopyModal] = useState('');
 
   const handleClickInterview = (e) => {
     e.preventDefault();
@@ -27,12 +34,26 @@ function App() {
     setMode('default');
   };
 
+  const handleCopyOk = () => {
+    setCopyModal('link');
+  };
+
+  const handleCloseLinkModal = () => {
+    setCopyModal('');
+  };
+
   return (
     <div className="invitation">
       {mode === 'default' ? (
         <>
           <div className="header">
             <div className="title">KIM JIHWAN & CHOI YUJEONG</div>
+            <div className="buttons">
+              <CopyToClipboard text={github} onCopy={handleCopyOk}>
+                <img src={linkIcon} alt="" />
+              </CopyToClipboard>
+              <img src={kakaoIcon} alt="" />
+            </div>
           </div>
           <div className="content">
             <div className="main">
@@ -69,10 +90,10 @@ function App() {
               </div>
               <div className="name-wrapper">
                 <div className="name">
-                  <img
+                  {/* <img
                     src="https://mcard.fromtoday.co.kr/mcard/assets/images/icon_flower_chrys_w32.png"
                     alt=""
-                  />
+                  /> */}
                   김호영 · 소혜경의 아들
                   <span>지환</span>
                 </div>
@@ -95,14 +116,14 @@ function App() {
             <div className="gallery">
               <div className="title">Gallery</div>
               <div className="gallery-grid">
-                {photoList.map((photo) => (
-                  <img src={photo} alt="" />
+                {photoList.map((photo, index) => (
+                  <img src={photo} alt="" key={`photo_${index}`} />
                 ))}
               </div>
             </div>
             <Information />
             <Location />
-            <Account />
+            <Account setCopyModal={setCopyModal} />
             <div className="rsvp">
               <div className="title">참석 의사 전달</div>
               <div className="rsvp-wrapper">
@@ -175,6 +196,14 @@ function App() {
           >
             <img src={closeIcon} alt="" />
           </div>
+        </div>
+      )}
+      {copyModal && (
+        <div className="link-copy-modal">
+          {copyModal === 'link' ? '링크' : '계좌번호'}가 복사되었습니다.
+          <button type="button" onClick={handleCloseLinkModal}>
+            확인
+          </button>
         </div>
       )}
     </div>

@@ -1,6 +1,10 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
 import React, { useEffect, useRef } from 'react';
 
+import kakaoIcon from '../assets/icons/kakaonavi.png';
+import naverIcon from '../assets/icons/navermap.png';
+import tmapIcon from '../assets/icons/tmap.png';
+
 function Location() {
   const mapElement = useRef(null);
   const { naver } = window;
@@ -43,24 +47,15 @@ function Location() {
       <div ref={mapElement} style={{ minHeight: '400px' }} />
       <div className="app-list">
         <div className="app">
-          <img
-            src="https://mcard.fromtoday.co.kr/mcard/assets/images/icon_navermap_w48.png"
-            alt=""
-          />
+          <img src={naverIcon} alt="" />
           네이버 지도
         </div>
         <div className="app">
-          <img
-            src="https://mcard.fromtoday.co.kr/mcard/assets/images/icon_kakaonavi_w48.png"
-            alt=""
-          />
+          <img src={kakaoIcon} alt="" />
           카카오 내비
         </div>
         <div className="app">
-          <img
-            src="https://mcard.fromtoday.co.kr/mcard/assets/images/icon_tmap_w48.png"
-            alt=""
-          />
+          <img src={tmapIcon} alt="" />
           티맵
         </div>
       </div>
