@@ -27,17 +27,21 @@ function Calendar() {
   return (
     <div className="calendar">
       <div className="title">Wedding Day</div>
-      <div className="date">23년 9월 9일 토요일 오후 2시 30분</div>
+      <div className="date">
+        23년 9월 9일 토요일
+        <br />
+        오후 2시 30분
+      </div>
       <div className="location">엘리에나호텔 컨벤션홀(2F)</div>
       <div className="calendar-wrapper">
         <div className="dayname">
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
+          <div>S</div>
+          <div>M</div>
+          <div>T</div>
+          <div>W</div>
+          <div>T</div>
+          <div>F</div>
+          <div>S</div>
         </div>
         <div className="grid">
           {calendarArray.map((week) => (

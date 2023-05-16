@@ -35,16 +35,8 @@ function Location() {
       <div className="title">Location</div>
       <div className="location-wrapper">
         <div className="location">엘리에나 호텔 컨벤션홀 (2F)</div>
-        <div className="address">
-          <span>Address</span>
-          서울 강남구 논현로 645
-        </div>
-        <div className="tel">
-          <span>Contact</span>
-          02-3443-5670
-        </div>
       </div>
-      <div ref={mapElement} style={{ minHeight: '400px' }} />
+      <div ref={mapElement} style={{ minHeight: '300px' }} />
       <div className="app-list">
         <div className="app">
           <img src={naverIcon} alt="" />
@@ -61,11 +53,13 @@ function Location() {
       </div>
       <div className="location-info">
         <div className="info-item">
-          <div className="label">주차 안내</div>
-          <div>2시간 주차 가능합니다.</div>
+          <div className="label">안내</div>
           <div>
-            웨딩홀 내 주차공간이 부족할 경우, 인근 다른 주차장으로 안내될 수
-            있는 점 양해 부탁드립니다.
+            <span className="contact">Address</span>서울 강남구 논현로 645
+          </div>
+          <div>
+            <span className="contact">Contact</span>
+            02-3443-5670
           </div>
         </div>
         <div className="info-item">

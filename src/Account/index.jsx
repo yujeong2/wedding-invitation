@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import kakaopayIcon from '../assets/icons/kakaopay.png';
+import groomDownIcon from '../assets/icons/chevron-down-groom.png';
+import brideDownIcon from '../assets/icons/chevron-down-bride.png';
 
 const accountInfo = {
   groom: {
@@ -92,7 +94,12 @@ function Account(props) {
               aria-hidden="true"
               onClick={(e) => handleOpenAccount(e, type)}
             >
+              &#10084; &nbsp;
               {accountInfo[type].type}
+              <img
+                src={type === 'groom' ? groomDownIcon : brideDownIcon}
+                alt=""
+              />
             </div>
             <div className={`account-content ${type}`}>
               {accountInfo[type].list.map((item) => (

@@ -1,5 +1,5 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,react/no-array-index-key  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Account from './Account';
@@ -7,20 +7,62 @@ import Calendar from './Calendar';
 import DDay from './DDay';
 import Information from './Information';
 import Location from './Location';
+import RsvpModal from './RsvpModal';
 
 import mainImg from './assets/photo/5.jpg';
 import closeIcon from './assets/icons/close.png';
 import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
-import { github } from './assets/url';
+import purpleImg from './assets/background/purple.png';
+import leafImg from './assets/background/leaf.png';
+import { GITHUB_LINK, KAKAO_KEY } from './assets/url';
 
 import photoList from './photo';
 
 import './style.scss';
 
+export const shareKakao = () => {
+  if (window.Kakao) {
+    const kakao = window.Kakao;
+    if (!kakao.isInitialized()) {
+      kakao.init(KAKAO_KEY);
+    }
+
+    kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '김지환 ♥ 최유정의 결혼식에 초대합니다.',
+        description: '2023년 9월 9일 토요일 오후 2시',
+        imageUrl: 'url(/static/media/5.6d3598d4301f7161f3db.jpg)',
+        link: {
+          mobileWebUrl: GITHUB_LINK,
+          webUrl: GITHUB_LINK,
+        },
+      },
+      buttons: [
+        {
+          title: '지금 확인하기',
+          link: {
+            mobileWebUrl: GITHUB_LINK,
+            webUrl: GITHUB_LINK,
+          },
+        },
+        {
+          title: '위치보기',
+          link: {
+            mobileWebUrl: GITHUB_LINK,
+            webUrl: GITHUB_LINK,
+          },
+        },
+      ],
+    });
+  }
+};
+
 function App() {
   const [mode, setMode] = useState('default');
   const [copyModal, setCopyModal] = useState('');
+  const [rsvpModal, setRsvpModal] = useState(false);
 
   const handleClickInterview = (e) => {
     e.preventDefault();
@@ -42,6 +84,18 @@ function App() {
     setCopyModal('');
   };
 
+  const handleClickRsvp = () => {
+    setRsvpModal(true);
+  };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
+
   return (
     <div className="invitation">
       {mode === 'default' ? (
@@ -49,10 +103,12 @@ function App() {
           <div className="header">
             <div className="title">KIM JIHWAN & CHOI YUJEONG</div>
             <div className="buttons">
-              <CopyToClipboard text={github} onCopy={handleCopyOk}>
+              <CopyToClipboard text={GITHUB_LINK} onCopy={handleCopyOk}>
                 <img src={linkIcon} alt="" />
               </CopyToClipboard>
-              <img src={kakaoIcon} alt="" />
+              <div onClick={shareKakao} aria-hidden="true">
+                <img src={kakaoIcon} alt="" />
+              </div>
             </div>
           </div>
           <div className="content">
@@ -77,8 +133,9 @@ function App() {
               <div className="img-decoration">save the date</div>
             </div>
             <div className="invite">
-              <div className="title">Invitation</div>
+              {/* <div className="title">Invitation</div> */}
               <div className="text">
+                <img src={purpleImg} alt="" />
                 <p>언제나 곁에 함께 있어 주신</p>
                 <p>소중한 분들께,</p>
                 <p>저희의 첫 시작을 전합니다.</p>
@@ -88,27 +145,29 @@ function App() {
                 <p>한없이 맑을 앞으로의 날들,</p>
                 <p>서로 더 아끼고 사랑하며 살겠습니다.</p>
               </div>
-              <div className="name-wrapper">
-                <div className="name">
-                  {/* <img
+            </div>
+            <div className="name-wrapper">
+              <div className="name">
+                {/* <img
                     src="https://mcard.fromtoday.co.kr/mcard/assets/images/icon_flower_chrys_w32.png"
                     alt=""
                   /> */}
-                  김호영 · 소혜경의 아들
-                  <span>지환</span>
-                </div>
-                <div className="name">
-                  최흥길 · 김경애의 딸<span>유정</span>
-                </div>
+                <strong>김호영 · 소혜경</strong>의{' '}
+                <div className="sub">아들</div>
+                <span>지환</span>
               </div>
-              <div className="interview-button-wrapper">
-                <div
-                  className="interview-button"
-                  onClick={handleClickInterview}
-                  aria-hidden="true"
-                >
-                  신랑&신부의 인터뷰 읽어보기
-                </div>
+              <div className="name">
+                <strong>최흥길 · 김경애</strong>의 <div className="sub">딸</div>
+                <span>유정</span>
+              </div>
+            </div>
+            <div className="interview-button-wrapper">
+              <div
+                className="interview-button"
+                onClick={handleClickInterview}
+                aria-hidden="true"
+              >
+                신랑&신부의 인터뷰 읽어보기
               </div>
             </div>
             <Calendar />
@@ -127,6 +186,7 @@ function App() {
             <div className="rsvp">
               <div className="title">참석 의사 전달</div>
               <div className="rsvp-wrapper">
+                <img src={leafImg} alt="" />
                 <div className="description">
                   <p>모든 분들께</p>
                   <p>부족함 없는 예식을 준비하기 위해</p>
@@ -136,7 +196,13 @@ function App() {
                   <p>부담없이 알려주시면</p>
                   <p>정성껏 준비하겠습니다.</p>
                 </div>
-                <div className="button">참석 의사 전달하기</div>
+                <button
+                  className="button"
+                  type="button"
+                  onClick={handleClickRsvp}
+                >
+                  참석 의사 전달하기
+                </button>
               </div>
             </div>
             <div className="thanks">
@@ -206,6 +272,7 @@ function App() {
           </button>
         </div>
       )}
+      {rsvpModal && <RsvpModal setRsvpModal={setRsvpModal} />}
     </div>
   );
 }

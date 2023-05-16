@@ -1,5 +1,6 @@
-/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
-import React, { useState } from 'react';
+/* eslint-disable no-nested-ternary, react/jsx-props-no-spreading,operator-linebreak */
+import React, { useState, useRef } from 'react';
+import Slider from 'react-slick';
 
 import parkingImg from '../assets/photo/parking.jpg';
 import noticeImg from '../assets/photo/invitation.jpg';
@@ -27,23 +28,43 @@ const informationData = {
 };
 
 function Information() {
+  const sliderRef = useRef(null);
   const [selectedTab, setSelectedTab] = useState('notice');
 
-  const handleClickTab = (e, tab) => {
+  const handleClickTab = (e, tab, index) => {
     e.preventDefault();
     e.stopPropagation();
-    setSelectedTab(tab);
+    if (selectedTab !== tab) {
+      setSelectedTab(tab);
+      sliderRef.current.slickGoTo(index);
+    }
+  };
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    swipeToSlide: false,
+    swipe: true,
+    slidesToScroll: 1,
+    arrows: false,
+    beforeChange: (old, newIndex) => {
+      const newTab =
+        newIndex === 0 ? 'notice' : newIndex === 1 ? 'parking' : 'dining';
+      setSelectedTab(newTab);
+    },
   };
 
   return (
     <div className="information">
       <div className="title">Information</div>
       <div className="tabs">
-        {Object.keys(informationData).map((tab) => (
+        {Object.keys(informationData).map((tab, index) => (
           <div
             key={tab}
             className={`tab ${selectedTab === tab ? 'active' : ''}`}
-            onClick={(e) => handleClickTab(e, tab)}
+            onClick={(e) => handleClickTab(e, tab, index)}
             aria-hidden="true"
           >
             {informationData[tab].name}
@@ -51,14 +72,20 @@ function Information() {
         ))}
       </div>
       <div className="contents">
-        <img src={informationData[selectedTab].img} alt="" />
-        <div className="information-title">
-          <span>{selectedTab.toUpperCase()}</span>
-          {informationData[selectedTab].name}
-        </div>
-        <div className="information-content">
-          {informationData[selectedTab].content}
-        </div>
+        <Slider ref={sliderRef} {...settings}>
+          {Object.keys(informationData).map((tab) => (
+            <div className="information-content" key={tab}>
+              <img src={informationData[tab].img} alt="" />
+              <div className="information-title">
+                <span>{tab.toUpperCase()}</span>
+                {informationData[tab].name}
+              </div>
+              <div className="content-description">
+                {informationData[tab].content}
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );

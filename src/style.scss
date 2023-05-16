@@ -24,11 +24,14 @@
     color: #907D9E;
 
     .buttons {
+      display: flex;
+
       img {
         cursor: pointer;
+        height: 19px;
       }
 
-      img + img {
+      img + div {
         margin-left: 15px;
       }
     }
@@ -36,7 +39,7 @@
 
    
  .content {
-  padding-top: 40px;
+    padding-top: 40px;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -51,11 +54,12 @@
       padding: 50px 0;
 
         >.title {
-            font-size: 20px;
+            font-size: 16px;
             text-align: center;
             color: #aaa;
             letter-spacing: 2px;
             margin-bottom: 30px;
+            font-family: 'Merriweather';
         }
     }
 
@@ -69,7 +73,6 @@
       padding-bottom: 0;
 
       img {
-        border-radius: 30% 30% 0 0;
         margin: 20px 20px 0 20px;
         max-width: 510px;
         width: 90%;
@@ -133,55 +136,68 @@
     .invite {
       text-align: center;
 
-      .name-wrapper {
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        padding: 20px 0;
-        margin-top: 30px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .name {
-          height: 40px;
-          display: flex;
-          align-items: center;
-
-          img {
-            width: 20px;
-            margin-right: 5px;
-          }
-
-          span {
-            font-size: 16px;
-            font-weight:600;
-            margin-left: 10px;
-          }
-        }
+      img {
+        width: 50px;
       }
 
-      .interview-button-wrapper {
+      .text {
+        font-family: 'KBIZHanmaumMyungjo';
+        color: #333;
+      }
+
+   
+    }
+
+    .name-wrapper {
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .name {
+        height: 40px;
         display: flex;
-        justify-content: center;
         align-items: center;
 
-        margin-top: 40px;
-
-
-        .interview-button {
-          background: #FCFAFF;
-          border: 1px solid #EDE9F5;
-          border-radius: 5px;
-
-          width: 250px;
-          height: 40px;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
+        .sub {
+          width: 50px;
+          text-align: center;
         }
+
+        img {
+          width: 20px;
+          margin-right: 5px;
+        }
+
+        span {
+          font-size: 18px;
+          font-weight:600;
+          font-family: 'KBIZHanmaumMyungjo';
+        }
+      }
+    }
+
+    .interview-button-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+      .interview-button {
+        background: #FCFAFF;
+        border: 1px solid #EDE9F5;
+        border-radius: 5px;
+
+        width: 250px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
       }
     }
 
@@ -191,12 +207,15 @@
       .date {
         font-size: 18px;
         text-align: center;
+        font-family: 'Eulyoo1945';
+        line-height: 25px;
+
       }
 
       .location {
         text-align: center;
         padding: 15px 0;
-        margin-top: 15px;
+        margin-top: 30px;
         border-top: 1px dashed #ddd;
         border-bottom: 1px dashed #ddd;
         color: #a392b7;
@@ -205,13 +224,14 @@
       .calendar-wrapper {
         width: 280px;
         margin: 30px auto 0;
+        font-family: 'KBIZHanmaumMyungjo';
 
         .dayname {
           display: flex;
 
           >div {
             width: calc(100% / 7);
-            font-size: 13px;
+            font-size: 15px;
             height: 20px;
             text-align: center;
             color: #D2C9E3;
@@ -269,19 +289,22 @@
     }
 
     .map {
-      max-width: 550px;
       background: #fbfbfb;
+
+      >div {
+        max-width: 550px;
+        margin: 0 auto;
+      }
 
         .location-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 30px 20px;
+            margin: 30px auto;
 
             .location {
                 font-size: 20px;
                 font-weight: 600;
-                margin-bottom: 20px;
             }
 
             .address, .tel {
@@ -338,6 +361,11 @@
                   margin-bottom: 10px;
                 }
 
+                .contact {
+                  margin-right: 10px;
+                  color: #666;
+                }
+
                 .seven {
                   color: #747F00;
                 }
@@ -384,7 +412,7 @@
               .account-title {
                 display: flex;
                 align-items: center;
-                justify-content: flex-start;
+                justify-content: space-between;
 
                 height: 50px;
                 font-size: 15px;
@@ -392,6 +420,10 @@
                 padding: 0 20px;
                 box-sizing: border-box;
                 cursor: pointer;
+
+                img {
+                  transition: all 0.5s;
+                }
               }
 
               .account-content {
@@ -460,11 +492,7 @@
                       background: #fff;
                       margin-left: 20px;
                     }
-
-
                   }
-  
-                 
                 }
   
                 &.groom {
@@ -478,12 +506,19 @@
               }
 
               &.open {
+
+                .account-title {
+                  img {
+                    transform: rotate( 180deg );
+                    transition: all 0.5s;
+                  }
+                }
+
                 .account-content {
                   .account-content-item {
                     height: 115px;
                     padding: 0 20px;
                     border-top: 1px dashed #ccc;
-
                   }
                 }
               }
@@ -517,6 +552,8 @@
     }
 
     .information {
+      max-width: 550px;
+
       .tabs {
         display: flex;
         border-bottom: 1px solid #ddd;
@@ -524,67 +561,100 @@
 
         .tab {
           width: calc(100% / 3);
-          height: 20px;
+          height: 16px;
           padding-bottom: 10px;
           font-weight: 500;
           font-size: 14px;
           text-align: center;
+          cursor: pointer;
 
           &.active {
-            color: #b27085;
-            border-bottom: 3px solid #b27085;
+            color: #907D9E;
+            border-bottom: 3px solid #907D9E;
           }
         }
       }
 
       .contents {
-        padding: 20px 30px;
+        display: flex;
+        width: 100%;
 
-        .information-title {
-          font-size: 18px;
-          margin: 15px 0;
+        .slick-slider {
+          width: 100%;
+          overflow: hidden;
 
-          span {
-            font-family: 'Eulyoo1945';
-            margin-right: 10px;
-            font-size: 20px;
-            font-weight: 600;
+          .slick-track {
+            display: flex;
           }
         }
 
-        img {
-          width: 100%;
-          height: 160px;
-          object-fit: cover;
-        }
-
         .information-content {
-          font-size: 15px;
-          line-height: 25px;
+          width: 100%;
+          padding: 20px 30px;
+          box-sizing: border-box;
+
+          .information-title {
+            font-size: 18px;
+            margin: 15px 0;
+  
+            span {
+              font-family: 'Eulyoo1945';
+              margin-right: 10px;
+              font-size: 20px;
+              font-weight: 600;
+            }
+          }
+  
+          img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+          }
+  
+          .content-description {
+            font-size: 15px;
+            line-height: 25px;
+          }
         }
+      
       }
     }
 
     .rsvp {
+      background: #FBF9FE;
+
         .rsvp-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
 
+            >img {
+              width: 50px;
+              margin: 10px 0;
+            }
+
             .description {
-                text-align: center;
+              text-align: center;
+              font-family: 'KBIZHanmaumMyungjo'
             }
 
             .button {
-                width: 200px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: #F1EDF9;
-                border-radius: 5px;
-                margin: 20px 0;
-                cursor: pointer;
+              background: #766097;
+              color: #fff;
+              border: none;
+              border-radius: 5px;
+      
+              width: 250px;
+              height: 40px;
+              margin-top: 30px;
+      
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 14px;
+              cursor: pointer;
+              outline: none;
+              font-family: 'Pretendard Variable';
             }
         }
     }
@@ -647,7 +717,7 @@
       height: 120px;
       font-size: 22px;
       text-align: center;
-      font-family: 'GangwonEdu_OTFBoldA';
+      font-family: 'KBIZHanmaumMyungjo';
       font-weight: 500;
 
       display: flex;
@@ -725,5 +795,119 @@
       font-family: 'Pretendard Variable';
 
     }
+  }
+
+  .rsvp-modal-wrapper {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+    .modal-background {
+      background: rgba(0,0,0,0.6);
+      height: 100%;
+      width: 100%;
+  
+      .modal {
+        position: absolute;
+        top: calc(50% - 200px);
+        left: calc(50% - 140px);
+        box-sizing: border-box;
+        width: 280px;
+        height: 330px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+
+        .title-wrapper {
+          height: 45px;
+          display: flex;
+          justify-content: space-between;
+
+          > button {
+            height: 16px;
+            background: transparent;
+            outline: none;
+            border: none;
+          }
+
+          img {
+            height: 16px;
+            cursor: pointer;
+          }
+        }
+
+        .form-wrapper {
+          font-size: 15px;
+
+          .form-item {
+            display: flex;
+            align-items: center;
+
+            .form-label {
+              width: 80px;
+            }
+
+            .form-content {
+              width: calc(100% - 80px);
+
+              input {
+                width: 100%;
+                height: 30px;
+                border: none;
+                border-radius: 5px;
+                background: #f1f1f1;
+                outline: none;
+                padding: 0 10px;
+                box-sizing: border-box;
+                font-family: 'Pretendard Variable';
+              }
+
+              button {
+                height: 30px;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                font-family: 'Pretendard Variable';
+
+                &.dining {
+                  width: calc(100% / 3 - 5px);
+                }
+
+                &.active {
+                  background: #c6afd6;
+                  color: #fff;
+                }
+              }
+
+              button + button {
+                margin-left: 5px;
+              }
+            }
+          }
+
+          .form-item + .form-item {
+            margin-top: 12px;
+          }
+        }
+
+        > button {
+          position:absolute;
+          bottom: 20px;
+          left: calc(50% - 70px);
+          height: 30px;
+          width: 140px;
+          border: none;
+          outline: none;
+          border-radius: 5px;
+          background: #907D9E;
+          color: #fff;
+          font-family: 'Pretendard Variable';
+
+        }
+      }
+    }
+
   }
  }
