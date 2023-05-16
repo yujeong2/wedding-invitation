@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wedding-invitation/static/css/main.370627d2.css",
-    "main.js": "/wedding-invitation/static/js/main.a789c1f2.js",
+    "main.css": "/wedding-invitation/static/css/main.eb57e82c.css",
+    "main.js": "/wedding-invitation/static/js/main.a5d00705.js",
     "static/media/paper-texture.jpg": "/wedding-invitation/static/media/paper-texture.b9019079bae5febb76d4.jpg",
     "static/media/5.jpg": "/wedding-invitation/static/media/5.6d3598d4301f7161f3db.jpg",
     "static/media/16.jpg": "/wedding-invitation/static/media/16.bff79e58afb62bf20751.jpg",
@@ -16,16 +16,18 @@
     "static/media/9.jpg": "/wedding-invitation/static/media/9.814cc665a461a13a2ba0.jpg",
     "static/media/12.jpg": "/wedding-invitation/static/media/12.d64c549180348c97f176.jpg",
     "static/media/10.jpg": "/wedding-invitation/static/media/10.5a773952b79657a5bae1.jpg",
+    "static/media/purple.png": "/wedding-invitation/static/media/purple.cd15ea9c1037cf429f61.png",
+    "static/media/leaf.png": "/wedding-invitation/static/media/leaf.6863df5c0493dbbaa182.png",
     "static/media/parking.jpg": "/wedding-invitation/static/media/parking.665f63b175a6454387f0.jpg",
     "static/media/kakaopay.png": "/wedding-invitation/static/media/kakaopay.a652815d3ce226eee3d4.png",
     "static/media/dining.jpg": "/wedding-invitation/static/media/dining.bf2fd8518decd76222cd.jpg",
     "static/media/invitation.jpg": "/wedding-invitation/static/media/invitation.d3f5d48655f5cda6fac3.jpg",
     "index.html": "/wedding-invitation/index.html",
-    "main.370627d2.css.map": "/wedding-invitation/static/css/main.370627d2.css.map",
-    "main.a789c1f2.js.map": "/wedding-invitation/static/js/main.a789c1f2.js.map"
+    "main.eb57e82c.css.map": "/wedding-invitation/static/css/main.eb57e82c.css.map",
+    "main.a5d00705.js.map": "/wedding-invitation/static/js/main.a5d00705.js.map"
   },
   "entrypoints": [
-    "static/css/main.370627d2.css",
-    "static/js/main.a789c1f2.js"
+    "static/css/main.eb57e82c.css",
+    "static/js/main.a5d00705.js"
   ]
 }
