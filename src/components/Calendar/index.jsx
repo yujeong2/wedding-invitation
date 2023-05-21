@@ -1,8 +1,12 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,react/no-array-index-key */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 
 function Calendar() {
+  const calendarRef = useRef(null);
   const [calendarArray, setCalendarArray] = useState([]);
+
+  useScrollFadeIn(calendarRef);
 
   const makeCalendarGrid = () => {
     const temp = [['', '', '', '', '']];
@@ -33,7 +37,7 @@ function Calendar() {
         오후 2시 30분
       </div>
       <div className="location">엘리에나호텔 컨벤션홀(2F)</div>
-      <div className="calendar-wrapper">
+      <div className="calendar-wrapper" ref={calendarRef}>
         <div className="dayname">
           <div>S</div>
           <div>M</div>

@@ -1,13 +1,19 @@
-/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,react/no-array-index-key  */
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,
+react/no-array-index-key,no-nested-ternary  */
+
+import React, { useState, useEffect, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import Account from './Account';
-import Calendar from './Calendar';
-import DDay from './DDay';
-import Information from './Information';
-import Location from './Location';
-import RsvpModal from './RsvpModal';
+import useScrollFadeIn from './hooks/useScrollFadeIn';
+
+import Account from './components/Account';
+import Calendar from './components/Calendar';
+import DDay from './components/DDay';
+import Information from './components/Information';
+import Location from './components/Location';
+import RsvpModal from './components/RsvpModal';
+import ImageSlide from './components/ImageSlide';
+import GuestBook from './components/GuestBook';
 
 import mainImg from './assets/photo/5.jpg';
 import closeIcon from './assets/icons/close.png';
@@ -15,9 +21,7 @@ import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
-import { GITHUB_LINK, KAKAO_KEY } from './assets/url';
-
-import photoList from './photo';
+import { GITHUB_LINK, KAKAO_KEY } from './assets/keys';
 
 import './style.scss';
 
@@ -33,7 +37,7 @@ export const shareKakao = () => {
       content: {
         title: '김지환 ♥ 최유정의 결혼식에 초대합니다.',
         description: '2023년 9월 9일 토요일 오후 2시',
-        imageUrl: 'url(/static/media/5.6d3598d4301f7161f3db.jpg)',
+        imageUrl: '%PUBLIC_URL%/kakaoshare.jpg',
         link: {
           mobileWebUrl: GITHUB_LINK,
           webUrl: GITHUB_LINK,
@@ -60,15 +64,19 @@ export const shareKakao = () => {
 };
 
 function App() {
+  const inviteRef = useRef(null);
+  useScrollFadeIn(inviteRef);
+
+  const [loading, setLoading] = useState(true);
   const [mode, setMode] = useState('default');
   const [copyModal, setCopyModal] = useState('');
   const [rsvpModal, setRsvpModal] = useState(false);
 
-  const handleClickInterview = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setMode('interview');
-  };
+  // const handleClickInterview = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   setMode('interview');
+  // };
 
   const handleCloseInterview = (e) => {
     e.preventDefault();
@@ -96,8 +104,17 @@ function App() {
     return () => document.body.removeChild(script);
   }, []);
 
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+
   return (
     <div className="invitation">
+      {loading && (
+        <div className="loading">
+          <div className="loading-content">유정 🤍 지환</div>
+        </div>
+      )}
       {mode === 'default' ? (
         <>
           <div className="header">
@@ -132,9 +149,9 @@ function App() {
               </div>
               <div className="img-decoration">save the date</div>
             </div>
-            <div className="invite">
+            <div className="invite" ref={inviteRef}>
               {/* <div className="title">Invitation</div> */}
-              <div className="text">
+              <div className="text ">
                 <img src={purpleImg} alt="" />
                 <p>언제나 곁에 함께 있어 주신</p>
                 <p>소중한 분들께,</p>
@@ -161,7 +178,7 @@ function App() {
                 <span>유정</span>
               </div>
             </div>
-            <div className="interview-button-wrapper">
+            {/* <div className="interview-button-wrapper">
               <div
                 className="interview-button"
                 onClick={handleClickInterview}
@@ -169,17 +186,10 @@ function App() {
               >
                 신랑&신부의 인터뷰 읽어보기
               </div>
-            </div>
+            </div> */}
             <Calendar />
             <DDay />
-            <div className="gallery">
-              <div className="title">Gallery</div>
-              <div className="gallery-grid">
-                {photoList.map((photo, index) => (
-                  <img src={photo} alt="" key={`photo_${index}`} />
-                ))}
-              </div>
-            </div>
+            <ImageSlide />
             <Information />
             <Location />
             <Account setCopyModal={setCopyModal} />
@@ -205,6 +215,7 @@ function App() {
                 </button>
               </div>
             </div>
+            <GuestBook />
             <div className="thanks">
               <div className="title">Thanks To</div>
               <div className="thanks-wrapper">

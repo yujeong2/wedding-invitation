@@ -2,9 +2,9 @@
 import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
 
-import parkingImg from '../assets/photo/parking.jpg';
-import noticeImg from '../assets/photo/invitation.jpg';
-import diningImg from '../assets/photo/dining.jpg';
+import parkingImg from '../../assets/photo/parking.jpg';
+import noticeImg from '../../assets/photo/invitation.jpg';
+import diningImg from '../../assets/photo/dining.jpg';
 
 const informationData = {
   notice: {
@@ -41,17 +41,18 @@ function Information() {
   };
 
   const settings = {
+    initialSlide: 0,
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 200,
     slidesToShow: 1,
-    swipeToSlide: false,
+    swipeToSlide: true,
     swipe: true,
-    slidesToScroll: 1,
     arrows: false,
-    beforeChange: (old, newIndex) => {
+    afterChange: (index) => {
+      console.log('index', index);
       const newTab =
-        newIndex === 0 ? 'notice' : newIndex === 1 ? 'parking' : 'dining';
+        index === 0 ? 'notice' : index === 1 ? 'parking' : 'dining';
       setSelectedTab(newTab);
     },
   };

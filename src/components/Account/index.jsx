@@ -3,9 +3,9 @@ react/destructuring-assignment, react/prop-types */
 import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import kakaopayIcon from '../assets/icons/kakaopay.png';
-import groomDownIcon from '../assets/icons/chevron-down-groom.png';
-import brideDownIcon from '../assets/icons/chevron-down-bride.png';
+import kakaopayIcon from '../../assets/icons/kakaopay.png';
+import groomDownIcon from '../../assets/icons/chevron-down-groom.png';
+import brideDownIcon from '../../assets/icons/chevron-down-bride.png';
 
 const accountInfo = {
   groom: {

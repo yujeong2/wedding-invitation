@@ -1,9 +1,9 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
 import React, { useEffect, useRef } from 'react';
 
-import kakaoIcon from '../assets/icons/kakaonavi.png';
-import naverIcon from '../assets/icons/navermap.png';
-import tmapIcon from '../assets/icons/tmap.png';
+import kakaoIcon from '../../assets/icons/kakaonavi.png';
+import naverIcon from '../../assets/icons/navermap.png';
+import tmapIcon from '../../assets/icons/tmap.png';
 
 function Location() {
   const mapElement = useRef(null);

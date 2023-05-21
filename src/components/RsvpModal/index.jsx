@@ -1,7 +1,8 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line, react/prop-types */
 import React, { useState } from 'react';
 
-import closeIcon from '../assets/icons/close.png';
+import closeIcon from '../../assets/icons/close.png';
+import { getGoogleSheet } from '../../hooks/useGoogleSheet';
 
 function RsvpModal({ setRsvpModal }) {
   const [data, setData] = useState({
@@ -12,8 +13,15 @@ function RsvpModal({ setRsvpModal }) {
     dining: 'yes',
   });
 
+  const handleGoogleSheetAddRow = async (row) => {
+    const googleSheet = await getGoogleSheet();
+    const sheetsByIdElement = googleSheet.sheetsById[0];
+    await sheetsByIdElement.addRow(row);
+  };
+
   const handleClickSubmit = () => {
     setRsvpModal(false);
+    handleGoogleSheetAddRow(data);
   };
 
   const handleChangeData = (type, value) => {
@@ -25,9 +33,9 @@ function RsvpModal({ setRsvpModal }) {
   };
 
   return (
-    <div className="rsvp-modal-wrapper">
+    <div className="modal-wrapper">
       <div className="modal-background">
-        <div className="modal">
+        <div className="rsvp-modal">
           <div className="title-wrapper">
             <div className="title">참석 의사 전달</div>
             <button type="button" onClick={handleClickSubmit}>
@@ -41,6 +49,7 @@ function RsvpModal({ setRsvpModal }) {
                 <input
                   type="text"
                   value={data.name}
+                  placeholder="대표자 한 분의 성함"
                   onChange={(e) => handleChangeData('name', e.target.value)}
                 />
               </div>
@@ -51,6 +60,7 @@ function RsvpModal({ setRsvpModal }) {
                 <input
                   type="text"
                   value={data.phone}
+                  placeholder="참석자 대표 연락처"
                   onChange={(e) => handleChangeData('phone', e.target.value)}
                 />
               </div>
@@ -61,6 +71,7 @@ function RsvpModal({ setRsvpModal }) {
                 <input
                   type="number"
                   value={data.count}
+                  placeholder="본인 포함 참석 인원"
                   onChange={(e) => handleChangeData('count', e.target.value)}
                 />
               </div>
@@ -71,6 +82,7 @@ function RsvpModal({ setRsvpModal }) {
                 <input
                   type="text"
                   value={data.party}
+                  placeholder="쉼표로 구분해주세요"
                   onChange={(e) => handleChangeData('party', e.target.value)}
                 />
               </div>
