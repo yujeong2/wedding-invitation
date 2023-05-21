@@ -5,14 +5,12 @@ import useGoogleSheet from '../../hooks/useGoogleSheet';
 function GuestBook() {
   const [rows] = useGoogleSheet(1132076889);
 
-  console.log('rows', rows);
-
   return (
     <div className="guestbook">
       <div className="title">Guest Book</div>
       <div className="guestbook-list">
         {rows.map((o) => (
-          <div className="guestbook-item">
+          <div className="guestbook-item" key={o.rowNumber}>
             <div className="item-top">
               <div className="name">{o.name}</div>
               <div className="date">{o.date}</div>

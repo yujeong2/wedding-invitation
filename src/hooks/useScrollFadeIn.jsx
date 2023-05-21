@@ -6,7 +6,6 @@ const useIntersectionObsever = (targetRef) => {
   useEffect(() => {
     if (!observer.current) {
       const observerCallback = (entries) => {
-        console.log('entries', entries);
         if (entries.length === 1) {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
