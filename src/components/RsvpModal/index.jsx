@@ -38,7 +38,7 @@ function RsvpModal({ setRsvpModal }) {
         <div className="rsvp-modal">
           <div className="title-wrapper">
             <div className="title">참석 의사 전달</div>
-            <button type="button" onClick={handleClickSubmit}>
+            <button type="button" onClick={() => setRsvpModal(false)}>
               <img src={closeIcon} alt="" />
             </button>
           </div>

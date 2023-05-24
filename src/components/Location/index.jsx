@@ -1,9 +1,11 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
 import React, { useEffect, useRef } from 'react';
+import { isIOS, isAndroid } from 'react-device-detect';
 
 import kakaoIcon from '../../assets/icons/kakaonavi.png';
 import naverIcon from '../../assets/icons/navermap.png';
 import tmapIcon from '../../assets/icons/tmap.png';
+import { GITHUB_LINK, URL_ENCODED_HOTEL } from '../../assets/keys';
 
 function Location() {
   const mapElement = useRef(null);
@@ -30,6 +32,25 @@ function Location() {
     });
   }, []);
 
+  const handleClickNaverMap = () => {
+    if (isIOS) {
+      // 기기가 ios 인 경우
+      window.location.replace(
+        `nmap://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}`,
+      );
+    } else if (isAndroid) {
+      // 기기가 android 인 경우
+      window.location.replace(
+        `intent://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`,
+      );
+    } else {
+      // 그 외(윈도우 데스크탑 등)
+      window.open(
+        'https://map.naver.com/v5/entry/place/1354448162?c=15,0,0,0,dh',
+      );
+    }
+  };
+
   return (
     <div className="map">
       <div className="title">Location</div>
@@ -38,15 +59,15 @@ function Location() {
       </div>
       <div ref={mapElement} style={{ minHeight: '300px' }} />
       <div className="app-list">
-        <div className="app">
+        <div className="app" aria-hidden="true" onClick={handleClickNaverMap}>
           <img src={naverIcon} alt="" />
           네이버 지도
         </div>
-        <div className="app">
+        <div className="app" aria-hidden="true">
           <img src={kakaoIcon} alt="" />
           카카오 내비
         </div>
-        <div className="app">
+        <div className="app" aria-hidden="true">
           <img src={tmapIcon} alt="" />
           티맵
         </div>
