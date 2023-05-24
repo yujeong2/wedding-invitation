@@ -1,9 +1,10 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,
-react/no-array-index-key,no-nested-ternary  */
+react/no-array-index-key,no-nested-ternary, indent  */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer } from 'react-toastify';
+import { isIOS, isAndroid } from 'react-device-detect';
 
 import useScrollFadeIn from './hooks/useScrollFadeIn';
 
@@ -21,7 +22,7 @@ import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
-import { GITHUB_LINK, KAKAO_KEY } from './assets/keys';
+import { GITHUB_LINK, KAKAO_KEY, URL_ENCODED_HOTEL } from './assets/keys';
 
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -55,8 +56,13 @@ export const shareKakao = () => {
         {
           title: '위치보기',
           link: {
-            mobileWebUrl: GITHUB_LINK,
-            webUrl: GITHUB_LINK,
+            mobileWebUrl: isIOS
+              ? `nmap://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}`
+              : isAndroid
+              ? `intent://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`
+              : 'https://map.naver.com/v5/entry/place/1354448162?c=15,0,0,0,dh',
+            webUrl:
+              'https://map.naver.com/v5/entry/place/1354448162?c=15,0,0,0,dh',
           },
         },
       ],
