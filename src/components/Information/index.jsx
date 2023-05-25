@@ -49,10 +49,9 @@ function Information() {
     swipeToSlide: true,
     swipe: true,
     arrows: false,
-    afterChange: (index) => {
-      console.log('index', index);
+    beforeChange: (index, newIndex) => {
       const newTab =
-        index === 0 ? 'notice' : index === 1 ? 'parking' : 'dining';
+        newIndex === 0 ? 'notice' : newIndex === 1 ? 'parking' : 'dining';
       setSelectedTab(newTab);
     },
   };

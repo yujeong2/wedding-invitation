@@ -43,11 +43,21 @@
     opacity: 1;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
  
- .invitation {
+.invitation {
   height: 100vh;
   width: 100%;
   font-family: 'Pretendard Variable';
+
+  .Toastify {
+    .Toastify__toast-body {
+      font-family: 'Pretendard Variable';
+    }
+  }
 
   .loading {
     position: fixed;
@@ -56,13 +66,25 @@
     background: #efecf3;
     color: #766097;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     animation: fade-out 0.5s ease-out 1.5s both;
+    
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+    }
 
     .loading-content {
-      animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;    }
+      animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;    
+    }
+
+    .decoration {
+      font-family: "a Auto Signature";
+      opacity: 0.5;
+      margin-bottom: 10px;
+    }
   }
 
   .header {
@@ -75,9 +97,9 @@
     justify-content: space-between;
     align-items: center;
 
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Eulyoo1945';
+    font-size: 12px;
+    font-family: 'Memogram';
+    letter-spacing: 2px;
 
     position: fixed;
     top: 0;
@@ -87,10 +109,15 @@
 
     .buttons {
       display: flex;
+      align-items: center;
 
       img {
         cursor: pointer;
         height: 19px;
+      }
+
+      >div {
+        display: flex;
       }
 
       img + div {
@@ -119,7 +146,7 @@
         color: #aaa;
         letter-spacing: 2px;
         margin-bottom: 30px;
-        font-family: 'Merriweather';
+        font-family: 'Memogram';
       }
     }
 
@@ -130,7 +157,7 @@
       align-items: center;
       flex-direction: column;
       background: #FAF7FF; 
-      padding-bottom: 0;
+      padding: 0;
 
       img {
         margin: 20px 20px 0 20px;
@@ -142,15 +169,14 @@
       .img-decoration {
         position: absolute;
         width: calc(100% - 40px);
-        // border: 1px solid #8e75b8;
         color: #8e75b8;
-        top: 5px;
+        top: 50px;
         margin: 20px;
 
-        letter-spacing: 15px;
-        font-size: 15px;
+        font-size: 35px;
         text-align: center;
         box-sizing: border-box;
+        font-family:  'a Auto Signature';
       }
 
       .info-area {
@@ -203,8 +229,12 @@
       }
 
       .text {
-        font-family: 'KBIZHanmaumMyungjo';
+        font-family: 'RIDIBatang';
         color: #333;
+
+        @media screen and (min-width: 1024px) {
+          font-size: 20px;
+        }
       }
 
        &.active {
@@ -239,7 +269,7 @@
         span {
           font-size: 18px;
           font-weight:600;
-          font-family: 'KBIZHanmaumMyungjo';
+          font-family: 'RIDIBatang';
         }
       }
     }
@@ -272,25 +302,46 @@
       .date {
         font-size: 18px;
         text-align: center;
-        font-family: 'Eulyoo1945';
+        font-family: 'Memogram';
         line-height: 25px;
-
       }
 
-      .location {
-        text-align: center;
-        padding: 15px 0;
-        margin-top: 30px;
-        border-top: 1px dashed #ddd;
-        border-bottom: 1px dashed #ddd;
-        color: #a392b7;
+      .month {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .month-subtext {
+          position: absolute;
+          font-family: "bacana";
+          color: #d2c6e3;
+        }
+
+        .month-text {
+          font-size: 34px;
+          color: #766097;
+          z-index: 2;
+          font-weight: 700;
+        }
       }
 
       .calendar-wrapper {
-        width: 280px;
-        margin: 30px auto 0;
-        font-family: 'KBIZHanmaumMyungjo';
+        width: 250px;
+        height: 200px;
+        margin: 30px auto;
+        font-family: 'RIDIBatang';
         opacity: 0;
+
+        @media screen and (min-width: 320px) {
+          width: 280px;
+          height: 230px;
+        }
+
+        @media screen and (min-width: 768px) {
+          width: 400px;
+          height: 300px;
+        }
 
         .dayname {
           display: flex;
@@ -301,21 +352,32 @@
             height: 20px;
             text-align: center;
             color: #D2C9E3;
+
+            @media screen and (min-width: 768px) {
+              font-size: 17px;
+            }
           };
         }
 
         .grid {
+          height: calc(100% - 20px);
+
           .week {
             display: flex;
+            height: 20%;
 
             .day {
               width: calc(100% / 7);
-              height: 40px;
+              height: 100%;
               display: flex;
               align-items: center;
               justify-content: center;
 
-              font-size: 12px;
+              font-size: 13px;
+
+              @media screen and (min-width: 768px) {
+                font-size: 15px;
+              }
 
               &.wedding {
                 background: #D2C9E3;
@@ -328,6 +390,13 @@
         &.active {
           animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
         }
+      }
+
+      .date-text {
+        margin: 0 auto;
+        text-align: center;
+        color: #d2c6e3;
+        font-family: 'RIDIBatang';
       }
     
     }
@@ -352,7 +421,7 @@
       .count {
         margin-top: 10px;
         font-size: 24px;
-        font-family: 'Eulyoo1945';
+        font-family: 'Memogram';
 
       }
     }
@@ -365,106 +434,103 @@
         margin: 0 auto;
       }
 
-        .location-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 30px auto;
+      .map-element {
+        max-width: none;
+      }
 
-            .location {
-                font-size: 20px;
-                font-weight: 600;
-            }
-
-            .address, .tel {
-              font-size: 14px;
-              margin-top: 10px;
-
-              span {
-                color: #999;
-                margin-right: 10px;
-              }
-            }
-
-           
-        }
-
-        .app-list {
-          background: #F1EDF9;
+      .location-wrapper {
           display: flex;
+          flex-direction: column;
           align-items: center;
-          height: 50px;
+          margin: 30px auto;
 
-            .app {
+          .location {
+              font-size: 20px;
+              font-weight: 600;
+          }
+
+          .address, .tel {
+            font-size: 14px;
+            margin-top: 10px;
+
+            span {
+              color: #999;
+              margin-right: 10px;
+            }
+          }
+
+          
+      }
+
+      .app-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+          .app {
+            font-size: 14px;
+            width: 100px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            img {
+              width: 24px;
+              margin-right: 10px;
+            }
+          }
+      }
+
+      .location-info {
+        padding: 0 30px;
+
+          .info-item {
+              padding: 30px 0;
               font-size: 14px;
-              width: 33%;
-              height: 30px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              border-right: 3px solid #D4C9EA;
-              cursor: pointer;
 
-              img {
-                width: 24px;
+              .label {
+                font-weight: 600;
+                font-size: 16px;
+                margin-bottom: 10px;
+              }
+
+              .contact {
                 margin-right: 10px;
+                color: #666;
+              }
+
+              .seven {
+                color: #747F00;
+              }
+
+              .nine {
+                color: #BDB092;
+              }
+
+              div + div {
+                margin-top: 10px;
+              }
+
+              .blue {
+                color: #264DB4;
+                margin-left: 5px;
+              }
+
+              .green {
+                color: #4DAA20;
+                margin-left: 5px;
+
               }
             
-            &:last-child {
-              border-right: none;
-            }
-            }
+          }
 
-            
-        }
-
-        .location-info {
-          padding: 0 30px;
-
-            .info-item {
-                padding: 30px 0;
-                font-size: 14px;
-
-                .label {
-                  font-weight: 600;
-                  font-size: 16px;
-                  margin-bottom: 10px;
-                }
-
-                .contact {
-                  margin-right: 10px;
-                  color: #666;
-                }
-
-                .seven {
-                  color: #747F00;
-                }
-
-                .nine {
-                  color: #BDB092;
-                }
-
-                div + div {
-                  margin-top: 10px;
-                }
-
-                .blue {
-                  color: #264DB4;
-                  margin-left: 5px;
-                }
-
-                .green {
-                  color: #4DAA20;
-                  margin-left: 5px;
-
-                }
-              
-            }
-
-            .info-item + .info-item {
-              border-top: 1px solid #D4C9EA;
-            }
-        }
+          .info-item + .info-item {
+            border-top: 1px solid #D4C9EA;
+          }
+      }
     }
 
     .account {
@@ -620,7 +686,7 @@
     }
 
     .information {
-      max-width: 550px;
+      max-width: 800px;
 
       .tabs {
         display: flex;
@@ -666,7 +732,7 @@
             margin: 15px 0;
   
             span {
-              font-family: 'Eulyoo1945';
+              font-family: 'Memogram';
               margin-right: 10px;
               font-size: 20px;
               font-weight: 600;
@@ -703,7 +769,11 @@
 
         .description {
           text-align: center;
-          font-family: 'KBIZHanmaumMyungjo'
+          font-family: 'RIDIBatang';
+
+          @media screen and (min-width: 1024px) {
+            font-size: 20px;
+          }
         }
 
         .button {
@@ -727,9 +797,7 @@
       }
     }
 
-    .gallery {
-      max-width: 550px;
-  
+    .gallery {  
       .gallery-grid {
         display: grid;
         grid-template-columns: repeat(2, 120px);
@@ -737,28 +805,35 @@
         row-gap: 10px;
         justify-content: center;
 
-        @media  screen and (min-width: 1024px) {
-          grid-template-columns: repeat(3, 150px);
+        @media screen and (min-width: 320px) {
+          grid-template-columns: repeat(2, 160px);
         }
 
-        @media  screen and (min-width: 320px) {
-          grid-template-columns: repeat(2, 150px);
+        @media screen and (min-width: 768px) {
+          grid-template-columns: repeat(3, 200px);
         }
 
-        div {
+        @media screen and (min-width: 1024px) {
+          grid-template-columns: repeat(3, 250px);
+        }
+
+
+        >div {
           width: 100%;
           cursor: pointer;
 
           img {
             width: 100%;
             object-fit: cover;
+            height: 267px;
+            object-position: top;
+
+            &:hover {
+              opacity: 0.8;
+            }
           }
         }
-
-       
       }
-
-   
     }
 
     .guestbook {
@@ -835,6 +910,25 @@
         }
     }
 
+    .share {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      >div {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        cursor: pointer;
+
+        img {
+          margin-right: 10px;
+          height: 24px;
+        }
+      }
+    }
+
     .thanks {
       background: #2E2C32;
       height: 160px;
@@ -871,7 +965,7 @@
       height: 120px;
       font-size: 22px;
       text-align: center;
-      font-family: 'KBIZHanmaumMyungjo';
+      font-family: 'RIDIBatang';
       font-weight: 500;
 
       display: flex;
@@ -934,6 +1028,7 @@
     border-radius: 10px;
     background: #fff;
     font-size: 15px;
+    border: 1px solid #eae4f6;
 
     button {
       margin-top: 15px;
@@ -947,7 +1042,7 @@
       background: #a392b7;
       color: #fff;
       font-family: 'Pretendard Variable';
-
+      cursor: pointer;
     }
   }
 
@@ -975,7 +1070,12 @@
         border-radius: 10px;
         padding: 20px;
 
-
+        @media screen and (min-width: 320px){
+          width: 320px;
+          height: 330px;
+          top: calc(50% - 160px);
+          left: calc(50% - 160px);
+        }
 
         @media  screen and (min-width: 1024px) {
           width: 400px;
@@ -984,13 +1084,7 @@
           left: calc(50% - 200px);
         }
 
-        @media screen and (min-width: 320px){
-          width: 320px;
-          height: 330px;
-          top: calc(50% - 160px);
-          left: calc(50% - 160px);
-        }
-
+       
         &.delete {
           height: 180px;
         }
@@ -1113,12 +1207,39 @@
           position: absolute;
           right: 20px;
           top: 20px;
+          z-index: 5;
+          cursor: pointer;
+        }
+
+        .index-wrapper {
+          position: absolute;
+          bottom: 30px;
+          left: calc(50% - 50px);
+          z-index: 5;
+
+          width: 100px;
+          height: 35px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          background: rgba(255,255,255,0.6);
+          border-radius: 15px;
+
+          span {
+            margin: 0 8px;
+
+            &:first-child {
+              color: #766097;
+              font-weight: bolder;
+            }
+          }
         }
 
         .image-slider {
           width: 100%;
           height: auto;
-          top: 100px;
           position: absolute;
 
           .slick-slider {
@@ -1127,6 +1248,25 @@
   
             .slick-track {
               display: flex;
+
+              .slick-slide {
+                >div {
+                  width: 100%;
+                  height: 100vh;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  img {
+                    width: auto !important;
+                    max-width: 100%;
+                    max-height: 100%;
+                    vertical-align: middle;
+                    display: inline-block;
+                    height: auto;
+                  }
+                }
+              }
             }
           }
         }

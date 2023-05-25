@@ -13,36 +13,33 @@ function GuestBookModal({
   setDeleteModal,
 }) {
   const [data, setData] = useState('');
-  const notify = () => {
-    toast.error('비밀번호가 틀립니다.', {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  };
 
   const handleClickSubmit = async () => {
-    if (guestbookList[deleteModal].password !== 'data') {
-      notify();
+    if (guestbookList[deleteModal].password !== data) {
+      toast.error('잘못된 비밀번호입니다.', {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } else {
       const googleSheet = await getGoogleSheet();
       const sheetsByIdElement = googleSheet.sheetsById[GUSETBOOK_SHEET_ID];
       const newRows = await sheetsByIdElement.getRows();
       await newRows[deleteModal].delete();
 
+      toast.success('메세지가 삭제되었습니다.', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
       setGuestbookList((curList) => {
         const newList = [...curList];
         newList.splice(deleteModal, 1);
         return newList;
       });
-      setDeleteModal(false);
+      setDeleteModal('');
     }
   };
 
-  const handleChangeData = (type, value) => {
-    setData((curData) => {
-      const newData = { ...curData };
-      newData[type] = value;
-      return newData;
-    });
+  const handleChangeData = (value) => {
+    setData(value);
   };
 
   return (
@@ -62,7 +59,7 @@ function GuestBookModal({
                 <input
                   type="password"
                   value={data.password}
-                  onChange={(e) => handleChangeData('password', e.target.value)}
+                  onChange={(e) => handleChangeData(e.target.value)}
                 />
               </div>
             </div>

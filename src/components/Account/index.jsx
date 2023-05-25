@@ -94,7 +94,7 @@ function Account(props) {
               aria-hidden="true"
               onClick={(e) => handleOpenAccount(e, type)}
             >
-              &#10084; &nbsp;
+              ♥ &nbsp;
               {accountInfo[type].type}
               <img
                 src={type === 'groom' ? groomDownIcon : brideDownIcon}

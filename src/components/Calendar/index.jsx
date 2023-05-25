@@ -30,13 +30,10 @@ function Calendar() {
 
   return (
     <div className="calendar">
-      <div className="title">Wedding Day</div>
-      <div className="date">
-        23년 9월 9일 토요일
-        <br />
-        오후 2시 30분
+      <div className="month">
+        <span className="month-subtext">September</span>
+        <span className="month-text">9</span>
       </div>
-      <div className="location">엘리에나호텔 컨벤션홀(2F)</div>
       <div className="calendar-wrapper" ref={calendarRef}>
         <div className="dayname">
           <div>S</div>
@@ -62,6 +59,7 @@ function Calendar() {
           ))}
         </div>
       </div>
+      <div className="date-text">23년 9월 9일 토요일 오후 2시 30분</div>
     </div>
   );
 }

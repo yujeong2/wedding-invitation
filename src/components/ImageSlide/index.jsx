@@ -1,4 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading,operator-linebreak, react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading,operator-linebreak,
+react/prop-types, react/jsx-one-expression-per-line */
 import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
 
@@ -7,10 +8,11 @@ import closeIcon from '../../assets/icons/close-light.png';
 
 function ImageSlide() {
   const sliderRef = useRef(null);
-  const [imageModal, setImageModal] = useState('');
+  const [imageModal, setImageModal] = useState(false);
+  const [current, setCurrent] = useState(0);
 
   const settings = {
-    initialSlide: Object.keys(photoList).findIndex((o) => o === imageModal),
+    initialSlide: current,
     dots: false,
     infinite: true,
     speed: 300,
@@ -18,14 +20,16 @@ function ImageSlide() {
     swipeToSlide: true,
     swipe: true,
     arrows: false,
+    beforeChange: (slide, newSlide) => setCurrent(newSlide),
   };
 
   const handleClickImage = (key) => {
-    setImageModal(key);
+    setImageModal(true);
+    setCurrent(Object.keys(photoList).findIndex((o) => o === key));
   };
 
   const handleClickBackground = () => {
-    setImageModal('');
+    setImageModal(false);
   };
 
   const handleClickSlider = (e) => {
@@ -62,6 +66,10 @@ function ImageSlide() {
                 aria-hidden="true"
               >
                 <img src={closeIcon} alt="" />
+              </div>
+              <div className="index-wrapper">
+                <span>{current}</span>/
+                <span>{Object.keys(photoList).length}</span>
               </div>
               <div
                 className="image-slider"

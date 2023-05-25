@@ -4,7 +4,6 @@ react/no-array-index-key,no-nested-ternary, indent  */
 import React, { useState, useEffect, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer } from 'react-toastify';
-import { isIOS, isAndroid } from 'react-device-detect';
 
 import useScrollFadeIn from './hooks/useScrollFadeIn';
 
@@ -22,7 +21,7 @@ import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
-import { GITHUB_LINK, KAKAO_KEY, URL_ENCODED_HOTEL } from './assets/keys';
+import { GITHUB_LINK, KAKAO_KEY } from './assets/keys';
 
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -39,7 +38,7 @@ export const shareKakao = () => {
       content: {
         title: '김지환 ♥ 최유정의 결혼식에 초대합니다.',
         description: '2023년 9월 9일 토요일 오후 2시',
-        imageUrl: 'https://ibb.co/wBvHLZP',
+        imageUrl: 'https://i.postimg.cc/sgr0RtYW/6.jpg',
         link: {
           mobileWebUrl: GITHUB_LINK,
           webUrl: GITHUB_LINK,
@@ -56,11 +55,8 @@ export const shareKakao = () => {
         {
           title: '위치보기',
           link: {
-            mobileWebUrl: isIOS
-              ? `nmap://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}`
-              : isAndroid
-              ? `intent://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`
-              : 'https://map.naver.com/v5/entry/place/1354448162?c=15,0,0,0,dh',
+            mobileWebUrl:
+              'https://map.naver.com/v5/entry/place/1354448162?c=15,0,0,0,dh',
             webUrl:
               'https://map.naver.com/v5/entry/place/1354448162?c=15,0,0,0,dh',
           },
@@ -107,11 +103,12 @@ function App() {
     <div className="invitation">
       {loading && (
         <div className="loading">
+          <div className="decoration">Our Wedding Day</div>
           <div className="loading-content">유정 🤍 지환</div>
         </div>
       )}
       <div className="header">
-        <div className="title">KIM JIHWAN & CHOI YUJEONG</div>
+        <div className="title">YUJEONG & JIHWAN</div>
         <div className="buttons">
           <CopyToClipboard text={GITHUB_LINK} onCopy={handleCopyOk}>
             <img src={linkIcon} alt="" />
@@ -170,15 +167,6 @@ function App() {
             <span>유정</span>
           </div>
         </div>
-        {/* <div className="interview-button-wrapper">
-              <div
-                className="interview-button"
-                onClick={handleClickInterview}
-                aria-hidden="true"
-              >
-                신랑&신부의 인터뷰 읽어보기
-              </div>
-            </div> */}
         <Calendar />
         <DDay />
         <ImageSlide />
@@ -204,6 +192,18 @@ function App() {
           </div>
         </div>
         <GuestBook />
+        <div className="share">
+          <CopyToClipboard text={GITHUB_LINK} onCopy={handleCopyOk}>
+            <div className="link-share" aria-hidden="true">
+              <img src={linkIcon} alt="" />
+              링크로 공유하기
+            </div>
+          </CopyToClipboard>
+          <div className="kakao-share" aria-hidden="true" onClick={shareKakao}>
+            <img src={kakaoIcon} alt="" />
+            카카오로 공유하기
+          </div>
+        </div>
         <div className="thanks">
           <div className="title">Thanks To</div>
           <div className="thanks-wrapper">
