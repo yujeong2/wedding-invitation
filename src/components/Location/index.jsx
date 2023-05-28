@@ -1,11 +1,13 @@
-/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line */
+/* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,operator-linebreak */
 import React, { useEffect, useRef } from 'react';
 import { isIOS, isAndroid } from 'react-device-detect';
 
 import kakaoIcon from '../../assets/icons/kakaonavi.png';
 import naverIcon from '../../assets/icons/navermap.png';
 import tmapIcon from '../../assets/icons/tmap.png';
-import { GITHUB_LINK, URL_ENCODED_HOTEL } from '../../assets/keys';
+
+const URL_ENCODED_HOTEL =
+  '%ec%97%98%eb%a6%ac%ec%97%90%eb%82%98%ed%98%b8%ed%85%94';
 
 function Location() {
   const mapElement = useRef(null);
@@ -35,11 +37,11 @@ function Location() {
   const handleClickNaverMap = () => {
     if (isIOS) {
       window.location.replace(
-        `nmap://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}`,
+        `nmap://search?query=${URL_ENCODED_HOTEL}&appname=${process.env.REACT_APP_GITHUB_LINK}`,
       );
     } else if (isAndroid) {
       window.location.replace(
-        `intent://search?query=${URL_ENCODED_HOTEL}&appname=${GITHUB_LINK}#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`,
+        `intent://search?query=${URL_ENCODED_HOTEL}&appname=${process.env.REACT_APP_GITHUB_LINK}#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`,
       );
     } else {
       window.open(

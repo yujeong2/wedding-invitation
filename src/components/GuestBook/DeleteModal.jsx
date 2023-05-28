@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import closeIcon from '../../assets/icons/close.png';
-import { GUSETBOOK_SHEET_ID } from '../../assets/keys';
 import { getGoogleSheet } from '../../hooks/useGoogleSheet';
 
 function GuestBookModal({
@@ -21,7 +20,7 @@ function GuestBookModal({
       });
     } else {
       const googleSheet = await getGoogleSheet();
-      const sheetsByIdElement = googleSheet.sheetsById[GUSETBOOK_SHEET_ID];
+      const sheetsByIdElement = googleSheet.sheetsById['1132076889'];
       const newRows = await sheetsByIdElement.getRows();
       await newRows[deleteModal].delete();
 

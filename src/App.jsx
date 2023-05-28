@@ -23,7 +23,6 @@ import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
-import { GITHUB_LINK, KAKAO_KEY } from './assets/keys';
 
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,7 +31,7 @@ export const shareKakao = () => {
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
-      kakao.init(KAKAO_KEY);
+      kakao.init(process.env.REACT_APP_KAKAO_KEY);
     }
 
     kakao.Share.sendDefault({
@@ -42,16 +41,16 @@ export const shareKakao = () => {
         description: '9월 9일 토요일 오후 2시 30분, 엘리에나호텔',
         imageUrl: 'https://i.postimg.cc/sgr0RtYW/6.jpg',
         link: {
-          mobileWebUrl: GITHUB_LINK,
-          webUrl: GITHUB_LINK,
+          mobileWebUrl: process.env.REACT_APP_GITHUB_LINK,
+          webUrl: process.env.REACT_APP_GITHUB_LINK,
         },
       },
       buttons: [
         {
           title: '지금 확인하기',
           link: {
-            mobileWebUrl: GITHUB_LINK,
-            webUrl: GITHUB_LINK,
+            mobileWebUrl: process.env.REACT_APP_GITHUB_LINK,
+            webUrl: process.env.REACT_APP_GITHUB_LINK,
           },
         },
         {
@@ -117,7 +116,10 @@ function App() {
       <div className="header">
         <div className="title">YUJEONG & JIHWAN</div>
         <div className="buttons">
-          <CopyToClipboard text={GITHUB_LINK} onCopy={handleCopyOk}>
+          <CopyToClipboard
+            text={process.env.REACT_APP_GITHUB_LINK}
+            onCopy={handleCopyOk}
+          >
             <img src={linkIcon} alt="" />
           </CopyToClipboard>
           <div onClick={shareKakao} aria-hidden="true">
@@ -213,7 +215,10 @@ function App() {
         </div>
         <GuestBook />
         <div className="share">
-          <CopyToClipboard text={GITHUB_LINK} onCopy={handleCopyOk}>
+          <CopyToClipboard
+            text={process.env.REACT_APP_GITHUB_LINK}
+            onCopy={handleCopyOk}
+          >
             <div className="link-share" aria-hidden="true">
               <img src={linkIcon} alt="" />
               링크로 공유하기

@@ -2,14 +2,13 @@
 
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { useEffect, useState } from 'react';
-import credential from '../assets/keys/googleSheetCredential.json';
-import { GOOGLE_SHEET_ID } from '../assets/keys';
 
 // 구글 시트 조회하는 로직
 export const getGoogleSheet = async () => {
-  const doc = new GoogleSpreadsheet(GOOGLE_SHEET_ID);
+  const doc = new GoogleSpreadsheet(process.env.REACT_APP_GOOGLE_SHEET_ID);
   // 구글 인증이 필요하다.
-  await doc.useServiceAccountAuth(credential);
+
+  await doc.useServiceAccountAuth(process.env.GOOGLE_APPLICATION_CREDENTIALS);
   await doc.loadInfo();
   return doc;
 };

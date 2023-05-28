@@ -5,7 +5,6 @@ import WriteModal from './WriteModal';
 import DeleteModal from './DeleteModal';
 
 import useGoogleSheet from '../../hooks/useGoogleSheet';
-import { GUSETBOOK_SHEET_ID } from '../../assets/keys';
 import closeIcon from '../../assets/icons/close.png';
 
 function GuestBook() {
@@ -13,7 +12,7 @@ function GuestBook() {
   const [writeModal, setWriteModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState('');
 
-  const [rows] = useGoogleSheet(GUSETBOOK_SHEET_ID);
+  const [rows] = useGoogleSheet('1132076889');
 
   useEffect(() => {
     setGuestbookList(rows);
