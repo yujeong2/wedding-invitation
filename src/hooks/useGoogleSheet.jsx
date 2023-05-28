@@ -8,7 +8,7 @@ export const getGoogleSheet = async () => {
   const doc = new GoogleSpreadsheet(process.env.REACT_APP_GOOGLE_SHEET_ID);
   // 구글 인증이 필요하다.
 
-  const credntials = {
+  const credentials = {
     type: 'service_account',
     project_id: 'wedding-invitation-387215',
     private_key_id: process.env.REACT_APP_GOOGLE_PRIVATE_KEY_ID,
@@ -23,7 +23,7 @@ export const getGoogleSheet = async () => {
     universe_domain: 'googleapis.com',
   };
 
-  await doc.useServiceAccountAuth(credntials);
+  await doc.useServiceAccountAuth(credentials);
   await doc.loadInfo();
   return doc;
 };
