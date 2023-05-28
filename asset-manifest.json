@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/wedding-invitation/static/css/main.bf79e545.chunk.css",
-    "main.js": "/wedding-invitation/static/js/main.b6b5b35a.chunk.js",
-    "main.js.map": "/wedding-invitation/static/js/main.b6b5b35a.chunk.js.map",
+    "main.css": "/wedding-invitation/static/css/main.03096071.chunk.css",
+    "main.js": "/wedding-invitation/static/js/main.69bae5f1.chunk.js",
+    "main.js.map": "/wedding-invitation/static/js/main.69bae5f1.chunk.js.map",
     "runtime-main.js": "/wedding-invitation/static/js/runtime-main.bed9997d.js",
     "runtime-main.js.map": "/wedding-invitation/static/js/runtime-main.bed9997d.js.map",
     "static/css/2.47012977.chunk.css": "/wedding-invitation/static/css/2.47012977.chunk.css",
-    "static/js/2.9e926fd5.chunk.js": "/wedding-invitation/static/js/2.9e926fd5.chunk.js",
-    "static/js/2.9e926fd5.chunk.js.map": "/wedding-invitation/static/js/2.9e926fd5.chunk.js.map",
+    "static/js/2.80803957.chunk.js": "/wedding-invitation/static/js/2.80803957.chunk.js",
+    "static/js/2.80803957.chunk.js.map": "/wedding-invitation/static/js/2.80803957.chunk.js.map",
     "index.html": "/wedding-invitation/index.html",
     "static/css/2.47012977.chunk.css.map": "/wedding-invitation/static/css/2.47012977.chunk.css.map",
-    "static/css/main.bf79e545.chunk.css.map": "/wedding-invitation/static/css/main.bf79e545.chunk.css.map",
-    "static/js/2.9e926fd5.chunk.js.LICENSE.txt": "/wedding-invitation/static/js/2.9e926fd5.chunk.js.LICENSE.txt",
+    "static/css/main.03096071.chunk.css.map": "/wedding-invitation/static/css/main.03096071.chunk.css.map",
+    "static/js/2.80803957.chunk.js.LICENSE.txt": "/wedding-invitation/static/js/2.80803957.chunk.js.LICENSE.txt",
     "static/media/1.71256752.jpg": "/wedding-invitation/static/media/1.71256752.jpg",
     "static/media/10.5a773952.jpg": "/wedding-invitation/static/media/10.5a773952.jpg",
     "static/media/12.d64c5491.jpg": "/wedding-invitation/static/media/12.d64c5491.jpg",
@@ -30,8 +30,8 @@
   "entrypoints": [
     "static/js/runtime-main.bed9997d.js",
     "static/css/2.47012977.chunk.css",
-    "static/js/2.9e926fd5.chunk.js",
-    "static/css/main.bf79e545.chunk.css",
-    "static/js/main.b6b5b35a.chunk.js"
+    "static/js/2.80803957.chunk.js",
+    "static/css/main.03096071.chunk.css",
+    "static/js/main.69bae5f1.chunk.js"
   ]
 }
