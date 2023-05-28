@@ -1,11 +1,13 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,
 react/no-array-index-key,no-nested-ternary, indent  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer } from 'react-toastify';
 
 import useScrollFadeIn from './hooks/useScrollFadeIn';
+import useBodyScrollLock from './hooks/useBodyScrollLock';
+import photoList from './photo';
 
 import Account from './components/Account';
 import Calendar from './components/Calendar';
@@ -33,7 +35,7 @@ export const shareKakao = () => {
       kakao.init(KAKAO_KEY);
     }
 
-    kakao.Link.sendDefault({
+    kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: '김지환 ♥ 최유정의 결혼식에 초대합니다.',
@@ -70,10 +72,13 @@ function App() {
   const inviteRef = useRef(null);
   useScrollFadeIn(inviteRef);
 
+  const { lockScroll, openScroll } = useBodyScrollLock();
+
   const [loading, setLoading] = useState(true);
 
   const [copyModal, setCopyModal] = useState('');
   const [rsvpModal, setRsvpModal] = useState(false);
+  const [imageModal, setImageModal] = useState(false);
 
   const handleCopyOk = () => {
     setCopyModal('link');
@@ -87,13 +92,15 @@ function App() {
     setRsvpModal(true);
   };
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
-    script.async = true;
-    document.body.appendChild(script);
-    return () => document.body.removeChild(script);
-  }, []);
+  const handleClickImage = (key) => {
+    setImageModal(key);
+    lockScroll();
+  };
+
+  const handleCloseImageModal = () => {
+    setImageModal('');
+    openScroll();
+  };
 
   setTimeout(() => {
     setLoading(false);
@@ -169,7 +176,20 @@ function App() {
         </div>
         <Calendar />
         <DDay />
-        <ImageSlide />
+        <div className="gallery">
+          <div className="title">Gallery</div>
+          <div className="gallery-grid">
+            {Object.keys(photoList).map((photo) => (
+              <div
+                key={`photo_${photo}`}
+                onClick={() => handleClickImage(photo)}
+                aria-hidden="true"
+              >
+                <img src={photoList[photo].src} alt="" />
+              </div>
+            ))}
+          </div>
+        </div>
         <Information />
         <Location />
         <Account setCopyModal={setCopyModal} />
@@ -225,6 +245,12 @@ function App() {
         </div>
       )}
       {rsvpModal && <RsvpModal setRsvpModal={setRsvpModal} />}
+      {imageModal && (
+        <ImageSlide
+          imageModal={imageModal}
+          handleCloseImageModal={handleCloseImageModal}
+        />
+      )}
       <ToastContainer />
     </div>
   );
