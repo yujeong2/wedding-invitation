@@ -39,7 +39,7 @@ export const shareKakao = () => {
       objectType: 'feed',
       content: {
         title: '김지환 ♥ 최유정의 결혼식에 초대합니다.',
-        description: '2023년 9월 9일 토요일 오후 2시',
+        description: '9월 9일 토요일 오후 2시 30분, 엘리에나호텔',
         imageUrl: 'https://i.postimg.cc/sgr0RtYW/6.jpg',
         link: {
           mobileWebUrl: GITHUB_LINK,
