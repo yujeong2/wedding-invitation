@@ -41,16 +41,16 @@ export const shareKakao = () => {
         description: '9월 9일 토요일 오후 2시 30분, 엘리에나호텔',
         imageUrl: 'https://i.postimg.cc/sgr0RtYW/6.jpg',
         link: {
-          mobileWebUrl: process.env.REACT_APP_GITHUB_LINK,
-          webUrl: process.env.REACT_APP_GITHUB_LINK,
+          mobileWebUrl: process.env.REACT_APP_MAIN_LINK,
+          webUrl: process.env.REACT_APP_MAIN_LINK,
         },
       },
       buttons: [
         {
           title: '지금 확인하기',
           link: {
-            mobileWebUrl: process.env.REACT_APP_GITHUB_LINK,
-            webUrl: process.env.REACT_APP_GITHUB_LINK,
+            mobileWebUrl: process.env.REACT_APP_MAIN_LINK,
+            webUrl: process.env.REACT_APP_MAIN_LINK,
           },
         },
         {
@@ -117,7 +117,7 @@ function App() {
         <div className="title">YUJEONG & JIHWAN</div>
         <div className="buttons">
           <CopyToClipboard
-            text={process.env.REACT_APP_GITHUB_LINK}
+            text={process.env.REACT_APP_MAIN_LINK}
             onCopy={handleCopyOk}
           >
             <img src={linkIcon} alt="" />
@@ -216,7 +216,7 @@ function App() {
         <GuestBook />
         <div className="share">
           <CopyToClipboard
-            text={process.env.REACT_APP_GITHUB_LINK}
+            text={process.env.REACT_APP_MAIN_LINK}
             onCopy={handleCopyOk}
           >
             <div className="link-share" aria-hidden="true">

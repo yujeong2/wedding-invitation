@@ -37,11 +37,11 @@ function Location() {
   const handleClickNaverMap = () => {
     if (isIOS) {
       window.location.replace(
-        `nmap://search?query=${URL_ENCODED_HOTEL}&appname=${process.env.REACT_APP_GITHUB_LINK}`,
+        `nmap://search?query=${URL_ENCODED_HOTEL}&appname=${process.env.REACT_APP_MAIN_LINK}`,
       );
     } else if (isAndroid) {
       window.location.replace(
-        `intent://search?query=${URL_ENCODED_HOTEL}&appname=${process.env.REACT_APP_GITHUB_LINK}#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`,
+        `intent://search?query=${URL_ENCODED_HOTEL}&appname=${process.env.REACT_APP_MAIN_LINK}#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`,
       );
     } else {
       window.open(
