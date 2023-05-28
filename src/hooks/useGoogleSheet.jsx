@@ -8,7 +8,22 @@ export const getGoogleSheet = async () => {
   const doc = new GoogleSpreadsheet(process.env.REACT_APP_GOOGLE_SHEET_ID);
   // 구글 인증이 필요하다.
 
-  await doc.useServiceAccountAuth(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+  const credntials = {
+    type: 'service_account',
+    project_id: 'wedding-invitation-387215',
+    private_key_id: process.env.REACT_APP_GOOGLE_PRIVATE_KEY_ID,
+    private_key: JSON.parse(process.env.REACT_APP_GOOGLE_PRIVATE_KEY),
+    client_email: 'ujeong@wedding-invitation-387215.iam.gserviceaccount.com',
+    client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+    token_uri: 'https://oauth2.googleapis.com/token',
+    auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+    client_x509_cert_url:
+      'https://www.googleapis.com/robot/v1/metadata/x509/ujeong%40wedding-invitation-387215.iam.gserviceaccount.com',
+    universe_domain: 'googleapis.com',
+  };
+
+  await doc.useServiceAccountAuth(credntials);
   await doc.loadInfo();
   return doc;
 };
