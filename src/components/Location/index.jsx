@@ -52,7 +52,17 @@ function Location() {
 
   const handleClickKakaoMap = () => {
     if (isIOS || isAndroid) {
-      window.location.replace('kakaomap://place?id=10931903');
+      if (window.Kakao) {
+        const kakao = window.Kakao;
+        if (!kakao.isInitialized()) {
+          kakao.init(process.env.REACT_APP_KAKAO_KEY);
+        }
+        kakao.Navi.start({
+          name: '엘리에나호텔',
+          x: 37.5112,
+          y: 127.0315,
+        });
+      }
     } else {
       window.open('https://map.kakao.com/?itemId=10931903');
     }
@@ -68,31 +78,18 @@ function Location() {
 
   return (
     <div className="map">
-      <div className="title">Location</div>
-      <div className="location-wrapper">
-        <div className="location">엘리에나 호텔 컨벤션홀 (2F)</div>
-      </div>
+      <div className="sub-title">Location</div>
+      <div className="title">오시는 길을 안내합니다</div>
       <div
         className="map-element"
         ref={mapElement}
         style={{ minHeight: '300px' }}
       />
-      <div className="app-list">
-        <div className="app" aria-hidden="true" onClick={handleClickNaverMap}>
-          <img src={naverIcon} alt="" />
-          네이버 지도
-        </div>
-        <div className="app" aria-hidden="true" onClick={handleClickKakaoMap}>
-          <img src={kakaoIcon} alt="" />
-          카카오 맵
-        </div>
-        <div className="app" aria-hidden="true" onClick={handleClickTMap}>
-          <img src={tmapIcon} alt="" />
-          티맵
-        </div>
+      <div className="location-wrapper">
+        <div className="location">엘리에나 호텔 컨벤션홀 (2F)</div>
       </div>
       <div className="location-info">
-        <div className="info-item">
+        {/* <div className="info-item">
           <div className="label">안내</div>
           <div>
             <span className="contact">Address</span>서울 강남구 논현로 645
@@ -100,6 +97,31 @@ function Location() {
           <div>
             <span className="contact">Contact</span>
             02-3443-5670
+          </div>
+        </div> */}
+        <div className="info-item">
+          <div className="label">내비게이션</div>
+          <div className="app-list">
+            <div
+              className="app"
+              aria-hidden="true"
+              onClick={handleClickNaverMap}
+            >
+              <img src={naverIcon} alt="" />
+              네이버 지도
+            </div>
+            <div
+              className="app"
+              aria-hidden="true"
+              onClick={handleClickKakaoMap}
+            >
+              <img src={kakaoIcon} alt="" />
+              카카오 내비
+            </div>
+            <div className="app" aria-hidden="true" onClick={handleClickTMap}>
+              <img src={tmapIcon} alt="" />
+              티맵
+            </div>
           </div>
         </div>
         <div className="info-item">

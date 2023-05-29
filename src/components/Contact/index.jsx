@@ -3,21 +3,23 @@ import React from 'react';
 
 function Contact() {
   return (
-    <div className="calendar">
+    <div className="contact">
       <div className="title">Contact</div>
-      <div className="date">23년 9월 9일 토요일 오후 2시 30분</div>
-      <div className="location">엘리에나호텔 컨벤션홀(2F)</div>
-      <div className="calendar-wrapper">
-        <div className="dayname">
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
+      <div className="contact-wrapper">
+        <div className="contact-item">
+          {/* <img src={} alt=""/> */}
+          <div className="text">
+            <span>신랑, </span>
+            김지환
+          </div>
         </div>
-        <div className="grid" />
+        <div className="contact-item">
+          {/* <img src={} alt=""/> */}
+          <div className="text">
+            <span>신부, </span>
+            최유정
+          </div>
+        </div>
       </div>
     </div>
   );

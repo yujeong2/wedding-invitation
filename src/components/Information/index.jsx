@@ -58,7 +58,8 @@ function Information() {
 
   return (
     <div className="information">
-      <div className="title">Information</div>
+      <div className="sub-title">Information</div>
+      <div className="title">예식 정보를 안내합니다</div>
       <div className="tabs">
         {Object.keys(informationData).map((tab, index) => (
           <div

@@ -1,9 +1,10 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,
 react/no-array-index-key,no-nested-ternary, indent  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer } from 'react-toastify';
+import scrollbar from 'smooth-scrollbar';
 
 import useScrollFadeIn from './hooks/useScrollFadeIn';
 import useBodyScrollLock from './hooks/useBodyScrollLock';
@@ -38,7 +39,7 @@ export const shareKakao = () => {
       objectType: 'feed',
       content: {
         title: '김지환 ♥ 최유정의 결혼식에 초대합니다.',
-        description: '9월 9일 토요일 오후 2시 30분, 엘리에나호텔',
+        description: '23.09.09 PM 2:30 · 엘리에나호텔',
         imageUrl: 'https://i.postimg.cc/sgr0RtYW/6.jpg',
         link: {
           mobileWebUrl: process.env.REACT_APP_MAIN_LINK,
@@ -78,6 +79,15 @@ function App() {
   const [copyModal, setCopyModal] = useState('');
   const [rsvpModal, setRsvpModal] = useState(false);
   const [imageModal, setImageModal] = useState(false);
+
+  useEffect(() => {
+    const contentDiv = document.querySelector('#smooth-scroll');
+    if (contentDiv) {
+      scrollbar.init(contentDiv, {
+        damping: 0.02,
+      });
+    }
+  }, []);
 
   const handleCopyOk = () => {
     setCopyModal('link');
@@ -127,7 +137,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="content">
+      <div className="content" id="smooth-scroll">
         <div className="main">
           <img src={mainImg} alt="" />
           <div className="info-area">
@@ -179,7 +189,8 @@ function App() {
         <Calendar />
         <DDay />
         <div className="gallery">
-          <div className="title">Gallery</div>
+          <div className="sub-title">Gallery</div>
+          <div className="title">갤러리 </div>
           <div className="gallery-grid">
             {Object.keys(photoList).map((photo) => (
               <div
@@ -221,12 +232,12 @@ function App() {
           >
             <div className="link-share" aria-hidden="true">
               <img src={linkIcon} alt="" />
-              링크로 공유하기
+              링크주소 복사하기
             </div>
           </CopyToClipboard>
           <div className="kakao-share" aria-hidden="true" onClick={shareKakao}>
             <img src={kakaoIcon} alt="" />
-            카카오로 공유하기
+            카카오톡 공유하기
           </div>
         </div>
         <div className="thanks">

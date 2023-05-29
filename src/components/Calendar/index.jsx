@@ -29,12 +29,12 @@ function Calendar() {
   }, []);
 
   return (
-    <div className="calendar">
+    <div className="calendar" ref={calendarRef}>
       <div className="month">
         <span className="month-subtext">September</span>
         <span className="month-text">9</span>
       </div>
-      <div className="calendar-wrapper" ref={calendarRef}>
+      <div className="calendar-wrapper">
         <div className="dayname">
           <div>S</div>
           <div>M</div>

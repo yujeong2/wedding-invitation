@@ -8,7 +8,7 @@ const useIntersectionObsever = (targetRef) => {
       const observerCallback = (entries) => {
         if (entries.length === 1) {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRatio < 1) {
               entry.target.classList.add('active');
             }
             // else {
@@ -19,7 +19,7 @@ const useIntersectionObsever = (targetRef) => {
       };
 
       observer.current = new window.IntersectionObserver(observerCallback, {
-        threshold: 0.5,
+        threshold: 0.3,
       });
     }
 

@@ -134,17 +134,30 @@ html {
     height: 100vh;
     width: 100%;
 
-    >div {
+    .scroll-content {
       width: 100%;
-      padding: 50px 0;
 
-      >.title {
-        font-size: 16px;
-        text-align: center;
-        color: #aaa;
-        letter-spacing: 2px;
-        margin-bottom: 30px;
-        font-family: 'Memogram';
+      >div {
+        width: 100%;
+        padding: 50px 0;
+
+        >.sub-title {
+          font-size: 12px;
+          text-align: center;
+          color: #aaa;
+          letter-spacing: 2px;
+          margin-bottom: 15px;
+          font-family: 'Memogram';
+        }
+  
+        >.title {
+          font-size: 18px;
+          text-align: center;
+          color: #000;
+          letter-spacing: 2px;
+          margin-bottom: 30px;
+          font-family: 'RIDIBatang';
+        }
       }
     }
 
@@ -297,19 +310,13 @@ html {
     .calendar {
       background: #F9F7FD;
 
-      .date {
-        font-size: 18px;
-        text-align: center;
-        font-family: 'Memogram';
-        line-height: 25px;
-      }
-
       .month {
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        
+        opacity: 0;
+
         .month-subtext {
           position: absolute;
           font-family: "bacana";
@@ -384,10 +391,6 @@ html {
             }
           }
         }
-
-        &.active {
-          animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-        }
       }
 
       .date-text {
@@ -395,8 +398,23 @@ html {
         text-align: center;
         color: #d2c6e3;
         font-family: 'RIDIBatang';
+        opacity: 0;
+
       }
-    
+
+      &.active {
+        .month {
+          animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        .calendar-wrapper {
+          animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.5s both;
+        }
+
+        .date-text {
+          animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s both;
+        }
+      }
     }
 
     .dday {
@@ -456,83 +474,91 @@ html {
               margin-right: 10px;
             }
           }
-
-          
-      }
-
-      .app-list {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-          .app {
-            font-size: 14px;
-            width: 100px;
-            height: 50px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-
-            img {
-              width: 24px;
-              margin-right: 10px;
-            }
-          }
       }
 
       .location-info {
-        padding: 0 30px;
+        padding: 0 20px;
 
-          .info-item {
-              padding: 30px 0;
-              font-size: 14px;
+        .info-item {
+          padding: 30px 0;
+          font-size: 14px;
 
-              .label {
-                font-weight: 600;
-                font-size: 16px;
-                margin-bottom: 10px;
-              }
-
-              .contact {
-                margin-right: 10px;
-                color: #666;
-              }
-
-              .seven {
-                color: #747F00;
-              }
-
-              .nine {
-                color: #BDB092;
-              }
-
-              div + div {
-                margin-top: 10px;
-              }
-
-              .blue {
-                color: #264DB4;
-                margin-left: 5px;
-              }
-
-              .green {
-                color: #4DAA20;
-                margin-left: 5px;
-
-              }
-            
+          .label {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
           }
 
-          .info-item + .info-item {
-            border-top: 1px solid #D4C9EA;
+          .contact {
+            margin-right: 10px;
+            color: #666;
           }
+
+          .seven {
+            color: #747F00;
+          }
+
+          .nine {
+            color: #BDB092;
+          }
+
+          div + div {
+            margin-top: 10px;
+          }
+
+          .blue {
+            color: #264DB4;
+            margin-left: 5px;
+          }
+
+          .green {
+            color: #4DAA20;
+            margin-left: 5px;
+
+          }
+
+          .app-list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+    
+              .app {
+                font-size: 13px;
+                background: #fff;
+    
+                width: 110px;
+                height: 42px;
+                box-sizing: border-box;
+                margin: 0;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+    
+                img {
+                  width: 20px;
+                  margin-right: 8px;
+                }
+              }
+          }
+        }
+
+        .info-item + .info-item {
+          border-top: 1px solid #D4C9EA;
+        }
       }
     }
 
     .account {
       max-width: 550px;
+      margin: 0 auto;
+
+      .description{
+        text-align: center;
+        font-family: 'RIDIBatang';
+      }
 
       .account-wrapper {
         display: flex;
@@ -685,6 +711,7 @@ html {
 
     .information {
       max-width: 800px;
+      margin: 0 auto;
 
       .tabs {
         display: flex;

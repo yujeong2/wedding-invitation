@@ -81,6 +81,12 @@ function Account(props) {
   return (
     <div className="account">
       <div className="title">마음 전하실 곳</div>
+      <div className="description">
+        <p>저희 두 사람의 소중한 시작을</p>
+        <p>함께 해주시는 모든 분들게 감사드리며,</p>
+        <p>전해주시는 따뜻한 진심을 배워</p>
+        <p>오래도록 행복하게 잘 살겠습니다.</p>
+      </div>
       <div className="account-wrapper">
         {Object.keys(accountInfo).map((type) => (
           <div
