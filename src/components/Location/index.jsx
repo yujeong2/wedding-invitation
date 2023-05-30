@@ -5,6 +5,8 @@ import { isIOS, isAndroid } from 'react-device-detect';
 import kakaoIcon from '../../assets/icons/kakaonavi.png';
 import naverIcon from '../../assets/icons/navermap.png';
 import tmapIcon from '../../assets/icons/tmap.png';
+import mapMarkerIcon from '../../assets/icons/map-marker-custom.png';
+import phoneIcon from '../../assets/icons/phone-custom.png';
 
 const URL_ENCODED_HOTEL =
   '%ec%97%98%eb%a6%ac%ec%97%90%eb%82%98%ed%98%b8%ed%85%94';
@@ -78,18 +80,23 @@ function Location() {
 
   return (
     <div className="map">
-      <div className="sub-title">Location</div>
+      <div className="sub-title">LOCATION</div>
       <div className="title">오시는 길을 안내합니다</div>
-      <div
-        className="map-element"
-        ref={mapElement}
-        style={{ minHeight: '300px' }}
-      />
+      <div className="map-element" ref={mapElement} />
       <div className="location-wrapper">
-        <div className="location">엘리에나 호텔 컨벤션홀 (2F)</div>
-      </div>
-      <div className="location-info">
-        {/* <div className="info-item">
+        <div className="location">
+          <div className="location-title">엘리에나 호텔 컨벤션홀 (2F)</div>
+          <p>
+            <img src={mapMarkerIcon} alt="" />
+            서울 강남구 논현로 645
+          </p>
+          <p>
+            <img src={phoneIcon} alt="" />
+            02&#41;&nbsp;3443-5670
+          </p>
+        </div>
+        <div className="location-info">
+          {/* <div className="info-item">
           <div className="label">안내</div>
           <div>
             <span className="contact">Address</span>서울 강남구 논현로 645
@@ -99,59 +106,60 @@ function Location() {
             02-3443-5670
           </div>
         </div> */}
-        <div className="info-item">
-          <div className="label">내비게이션</div>
-          <div className="app-list">
-            <div
-              className="app"
-              aria-hidden="true"
-              onClick={handleClickNaverMap}
-            >
-              <img src={naverIcon} alt="" />
-              네이버 지도
+          <div className="info-item">
+            <div className="label">내비게이션</div>
+            <div className="app-list">
+              <div
+                className="app"
+                aria-hidden="true"
+                onClick={handleClickNaverMap}
+              >
+                <img src={naverIcon} alt="" />
+                네이버 지도
+              </div>
+              <div
+                className="app"
+                aria-hidden="true"
+                onClick={handleClickKakaoMap}
+              >
+                <img src={kakaoIcon} alt="" />
+                카카오 내비
+              </div>
+              <div className="app" aria-hidden="true" onClick={handleClickTMap}>
+                <img src={tmapIcon} alt="" />
+                티맵
+              </div>
             </div>
-            <div
-              className="app"
-              aria-hidden="true"
-              onClick={handleClickKakaoMap}
-            >
-              <img src={kakaoIcon} alt="" />
-              카카오 내비
+          </div>
+          <div className="info-item">
+            <div className="label">지하철</div>
+            <div>
+              <span className="seven">7호선 학동역</span> 4번 출구 도보 4분
             </div>
-            <div className="app" aria-hidden="true" onClick={handleClickTMap}>
-              <img src={tmapIcon} alt="" />
-              티맵
+            <div>
+              <span className="nine">9호선 언주역</span> 2번 출구 도보 6분
             </div>
           </div>
-        </div>
-        <div className="info-item">
-          <div className="label">지하철</div>
-          <div>
-            <span className="seven">7호선 학동역</span> 4번 출구 도보 4분
-          </div>
-          <div>
-            <span className="nine">9호선 언주역</span> 2번 출구 도보 6분
-          </div>
-        </div>
-        <div className="info-item">
-          <div className="label">버스</div>
-          <div>
-            논현동고개 (23-119)
-            <span>
-              <span className="blue">147</span>
-              <span className="blue">241</span>
-              <span className="blue">463</span>
-              <span className="green">3412</span>
-              <span className="green">4211</span>
-            </span>
-          </div>
-          <div>
-            논현고개 (23-146)
-            <span>
-              <span className="blue">147</span>
-              <span className="blue">463</span>
-              <span className="green">4211</span>
-            </span>
+          <div className="info-item">
+            <div className="label">버스</div>
+            <div>
+              논현동고개 (23-119)
+              <span>
+                <span className="blue">147</span>
+                <span className="blue">241</span>
+                <span className="blue">463</span>
+                <span className="green">3412</span>
+                <span className="green">4211</span>
+              </span>
+            </div>
+            <div>
+              논현고개 (23-146)
+              <span>
+                <span className="blue">147</span>
+                <span className="blue">463</span>
+                <span className="green">4211</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ function GuestBook() {
 
   return (
     <div className="guestbook">
-      <div className="sub-title">Guset Book</div>
+      <div className="sub-title">GUESTBOOK</div>
       <div className="title">축하의 마음을 전해주세요</div>
       <div className="guestbook-list">
         {guestbookList.map((o, index) => (

@@ -98,7 +98,7 @@ html {
     align-items: center;
 
     font-size: 12px;
-    font-family: 'Memogram';
+    font-family: 'Cormorant SC';
     letter-spacing: 2px;
 
     position: fixed;
@@ -140,25 +140,32 @@ html {
       >div {
         width: 100%;
         padding: 50px 0;
-
-        >.sub-title {
-          font-size: 12px;
-          text-align: center;
-          color: #aaa;
-          letter-spacing: 2px;
-          margin-bottom: 15px;
-          font-family: 'Memogram';
-        }
-  
-        >.title {
-          font-size: 18px;
-          text-align: center;
-          color: #000;
-          letter-spacing: 2px;
-          margin-bottom: 30px;
-          font-family: 'RIDIBatang';
-        }
       }
+    }
+
+    >div {
+      &:not(.scroll-content){
+        width: 100%;
+        padding: 50px 0;
+      }
+    }
+
+    .sub-title {
+      font-size: 12px;
+      text-align: center;
+      color: #aaa;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-family: 'Cormorant SC';
+    }
+
+    .title {
+      font-size: 16px;
+      text-align: center;
+      color: #444;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+      font-family: 'RIDIBatang';
     }
 
     .main {
@@ -168,13 +175,10 @@ html {
       align-items: center;
       flex-direction: column;
       background: #FAF7FF; 
-      padding: 0;
+      padding: 0 !important;
 
       img {
-        margin: 20px 20px 0 20px;
         max-width: 510px;
-        width: 90%;
-
       }
 
       .img-decoration {
@@ -193,23 +197,27 @@ html {
       .info-area {
         width: 100%;
         text-align: center;
+        position: absolute;
+        top: 100px;
 
         .name {
           display: flex;
           justify-content: center;
           padding: 30px 20px;
-          font-weight: 600;
           
           > div {
             font-size: 20px;
             text-align:center;
-            margin: 0 30px;
+            margin: 0 20px;
+            color: #8167a5;
+            font-family: 'RIDIBatang';
 
             p {
               font-size: 14px;
               color: #999;
               margin: 0;
               margin-top: 5px;
+              font-family: 'Cormorant SC';
             }
           }
 
@@ -233,7 +241,7 @@ html {
     .invite {
       text-align: center;
       transition: all 1s;
-      opacity: 0;
+      background: #F9F7FD;
 
       img {
         width: 50px;
@@ -248,68 +256,76 @@ html {
         }
       }
 
+      .line {
+        margin: 40px auto 30px;
+        width: 100px;
+        height: 1px;
+        background: #EAE2F9;
+      }
+
+      .name-wrapper {  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+  
+        .name {
+          height: 40px;
+          display: flex;
+          align-items: center;
+  
+          .sub {
+            width: 50px;
+            text-align: center;
+          }
+  
+          img {
+            width: 20px;
+            margin-left: -23px;
+            margin-right: 3px;
+          }
+  
+          span {
+            font-size: 18px;
+            font-weight:600;
+            font-family: 'RIDIBatang';
+          }
+        }
+      }
+
+      .text {
+        p {
+          opacity: 0;
+        }
+      }
+  
        &.active {
-          animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        .text {
+          p {
+            &:nth-child(2){
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000)  both;
+            }
+            &:nth-child(3){
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s both;
+            }
+            &:nth-child(4){
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.8s both;
+            }
+            &:nth-child(6){
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.2s both;
+            }
+            &:nth-child(7){
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.6s both;
+            }
+            &:nth-child(8){
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 2s both;
+            }
+          }
+        }
         }
     }
 
-    .name-wrapper {
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
-      padding: 20px 0;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .name {
-        height: 40px;
-        display: flex;
-        align-items: center;
-
-        .sub {
-          width: 50px;
-          text-align: center;
-        }
-
-        img {
-          width: 20px;
-          margin-right: 5px;
-        }
-
-        span {
-          font-size: 18px;
-          font-weight:600;
-          font-family: 'RIDIBatang';
-        }
-      }
-    }
-
-    .interview-button-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-
-      .interview-button {
-        background: #FCFAFF;
-        border: 1px solid #EDE9F5;
-        border-radius: 5px;
-        cursor: pointer;
-
-        width: 250px;
-        height: 40px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-      }
-    }
-
+    
     .calendar {
-      background: #F9F7FD;
-
       .month {
         position: relative;
         display: flex;
@@ -437,48 +453,73 @@ html {
       .count {
         margin-top: 10px;
         font-size: 24px;
-        font-family: 'Memogram';
+        font-family: 'Cormorant SC';
 
       }
     }
 
     .map {
-      background: #fbfbfb;
-
-      >div {
-        max-width: 550px;
-        margin: 0 auto;
-      }
-
       .map-element {
         max-width: none;
+        min-height: 300px;
       }
 
       .location-wrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 30px auto;
+        background: #F4F7F3;
 
-          .location {
-              font-size: 20px;
-              font-weight: 600;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .location {
+          font-family: 'RIDIBatang';
+
+          .location-title {
+            font-size: 18px;
+            color: #364a30;
+            margin-bottom: 15px;
           }
 
-          .address, .tel {
+          p {
+            color: #486340;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            margin-left: -10px;
             font-size: 14px;
-            margin-top: 10px;
 
-            span {
-              color: #999;
-              margin-right: 10px;
+            img {
+              margin-right: 5px;
+              width: 20px;
+              height: 20px;
             }
           }
+
+          p + p {
+            margin-top: 10px;
+          }
+        }
+
+        .address, .tel {
+          font-size: 14px;
+          margin-top: 10px;
+
+          span {
+            color: #999;
+            margin-right: 10px;
+          }
+        }
+
       }
 
       .location-info {
-        padding: 0 20px;
+        width: 330px;
 
+        @media screen and (min-width: 768px) {
+          width: 600px;
+        }
         .info-item {
           padding: 30px 0;
           font-size: 14px;
@@ -527,10 +568,11 @@ html {
                 font-size: 13px;
                 background: #fff;
     
-                width: 110px;
+                width: 32%;
                 height: 42px;
                 box-sizing: border-box;
                 margin: 0;
+                border-radius: 10px;
 
                 display: flex;
                 align-items: center;
@@ -546,7 +588,7 @@ html {
         }
 
         .info-item + .info-item {
-          border-top: 1px solid #D4C9EA;
+          border-top: 1px solid #dde7da;
         }
       }
     }
@@ -757,7 +799,7 @@ html {
             margin: 15px 0;
   
             span {
-              font-family: 'Memogram';
+              font-family: 'Cormorant SC';
               margin-right: 10px;
               font-size: 20px;
               font-weight: 600;
@@ -1238,7 +1280,7 @@ html {
 
         .index-wrapper {
           position: absolute;
-          bottom: 30px;
+          bottom: 15px;
           left: calc(50% - 50px);
           z-index: 5;
 
@@ -1249,14 +1291,14 @@ html {
           align-items: center;
           justify-content: center;
 
-          background: rgba(255,255,255,0.6);
-          border-radius: 15px;
-
+          color: #d2c6e3;
+          font-family: 'RIDIBatang';
+          
           span {
             margin: 0 8px;
 
             &:first-child {
-              color: #766097;
+              color: #fff;
               font-weight: bolder;
             }
           }

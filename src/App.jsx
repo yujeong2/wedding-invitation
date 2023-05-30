@@ -5,6 +5,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer } from 'react-toastify';
 import scrollbar from 'smooth-scrollbar';
+import { isIOS, isAndroid } from 'react-device-detect';
 
 import useScrollFadeIn from './hooks/useScrollFadeIn';
 import useBodyScrollLock from './hooks/useBodyScrollLock';
@@ -20,6 +21,7 @@ import ImageSlide from './components/ImageSlide';
 import GuestBook from './components/GuestBook';
 
 import mainImg from './assets/photo/5.jpg';
+import flowerIcon from './assets/icons/chrysanthemum.png';
 import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
 import purpleImg from './assets/background/purple.png';
@@ -82,7 +84,7 @@ function App() {
 
   useEffect(() => {
     const contentDiv = document.querySelector('#smooth-scroll');
-    if (contentDiv) {
+    if (contentDiv && !isAndroid && !isIOS) {
       scrollbar.init(contentDiv, {
         damping: 0.02,
       });
@@ -151,46 +153,40 @@ function App() {
                 <p>CHOI YUJEONG</p>
               </div>
             </div>
-            <div className="info">
-              <div>저희 두 사람의 특별한 시작을</div>
-              <div>소중한 분들과 함께하고 싶습니다.</div>
-            </div>
           </div>
-          <div className="img-decoration">save the date</div>
+          <div className="img-decoration">our wedding day</div>
         </div>
         <div className="invite" ref={inviteRef}>
           {/* <div className="title">Invitation</div> */}
-          <div className="text ">
+          <div className="text">
             <img src={purpleImg} alt="" />
-            <p>언제나 곁에 함께 있어 주신</p>
-            <p>소중한 분들께,</p>
-            <p>저희의 첫 시작을 전합니다.</p>
+            <p>푸른 하늘이 눈부신 9월의 어느날,</p>
+            <p>소중한 순간들을 사랑으로 엮어</p>
+            <p>뜻깊은 날을 맞이합니다.</p>
             <br />
-            <p>큰 축복 가득 전해주시는</p>
-            <p>그 따뜻한 마음을 배워</p>
-            <p>한없이 맑을 앞으로의 날들,</p>
-            <p>서로 더 아끼고 사랑하며 살겠습니다.</p>
+            <p>저희의 설레는 시작의 순간에</p>
+            <p>고마운 분들을 초대합니다.</p>
+            <p>따뜻한 사랑으로 축복해주세요.</p>
+          </div>
+          <div className="line" />
+          <div className="name-wrapper">
+            <div className="name">
+              <img src={flowerIcon} alt="" />
+              <strong>김호영 · 소혜경</strong>의 <div className="sub">아들</div>
+              <span>지환</span>
+            </div>
+            <div className="name">
+              <strong>최흥길 · 김경애</strong>의 <div className="sub">딸</div>
+              <span>유정</span>
+            </div>
           </div>
         </div>
-        <div className="name-wrapper">
-          <div className="name">
-            {/* <img
-                    src="https://mcard.fromtoday.co.kr/mcard/assets/images/icon_flower_chrys_w32.png"
-                    alt=""
-                  /> */}
-            <strong>김호영 · 소혜경</strong>의 <div className="sub">아들</div>
-            <span>지환</span>
-          </div>
-          <div className="name">
-            <strong>최흥길 · 김경애</strong>의 <div className="sub">딸</div>
-            <span>유정</span>
-          </div>
-        </div>
+
         <Calendar />
         <DDay />
         <div className="gallery">
-          <div className="sub-title">Gallery</div>
-          <div className="title">갤러리 </div>
+          <div className="sub-title">GALLERY</div>
+          <div className="title">우리의 순간들</div>
           <div className="gallery-grid">
             {Object.keys(photoList).map((photo) => (
               <div
