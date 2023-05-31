@@ -41,7 +41,7 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
       <div className="modal-background">
         <div className="rsvp-modal">
           <div className="title-wrapper">
-            <div className="title">신랑신부에게 메시지 남기기</div>
+            <div className="modal-title">신랑신부에게 메시지 남기기</div>
             <button type="button" onClick={() => setWriteModal(false)}>
               <img src={closeIcon} alt="" />
             </button>

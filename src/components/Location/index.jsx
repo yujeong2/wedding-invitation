@@ -6,7 +6,6 @@ import kakaoIcon from '../../assets/icons/kakaonavi.png';
 import naverIcon from '../../assets/icons/navermap.png';
 import tmapIcon from '../../assets/icons/tmap.png';
 import mapMarkerIcon from '../../assets/icons/map-marker-custom.png';
-import phoneIcon from '../../assets/icons/phone-custom.png';
 
 const URL_ENCODED_HOTEL =
   '%ec%97%98%eb%a6%ac%ec%97%90%eb%82%98%ed%98%b8%ed%85%94';
@@ -62,11 +61,12 @@ function Location() {
         kakao.Navi.start({
           name: '엘리에나호텔',
           x: 37.5112,
-          y: 127.0315,
+          y: 127.0318,
+          coordType: 'wgs84',
         });
       }
     } else {
-      window.open('https://map.kakao.com/?itemId=10931903');
+      window.open('https://map.kakao.com/?itemId=1197705393');
     }
   };
 
@@ -84,82 +84,69 @@ function Location() {
       <div className="title">오시는 길을 안내합니다</div>
       <div className="map-element" ref={mapElement} />
       <div className="location-wrapper">
-        <div className="location">
-          <div className="location-title">엘리에나 호텔 컨벤션홀 (2F)</div>
-          <p>
-            <img src={mapMarkerIcon} alt="" />
-            서울 강남구 논현로 645
-          </p>
-          <p>
-            <img src={phoneIcon} alt="" />
-            02&#41;&nbsp;3443-5670
-          </p>
+        <div className="venue">
+          <img src={mapMarkerIcon} alt="" />
+          엘리에나호텔 컨벤션홀 (2F)
         </div>
-        <div className="location-info">
-          {/* <div className="info-item">
-          <div className="label">안내</div>
+        <div className="venue-info">
+          <span>서울 강남구 논현로 645</span>
+          <span> 02&#41;&nbsp;3443-5670</span>
+        </div>
+      </div>
+      <div className="location-info">
+        <div className="info-item">
+          <div className="label">내비게이션</div>
+          <div className="app-list">
+            <div
+              className="app"
+              aria-hidden="true"
+              onClick={handleClickNaverMap}
+            >
+              <img src={naverIcon} alt="" />
+              네이버 지도
+            </div>
+            <div
+              className="app"
+              aria-hidden="true"
+              onClick={handleClickKakaoMap}
+            >
+              <img src={kakaoIcon} alt="" />
+              카카오 내비
+            </div>
+            <div className="app" aria-hidden="true" onClick={handleClickTMap}>
+              <img src={tmapIcon} alt="" />
+              티맵
+            </div>
+          </div>
+        </div>
+        <div className="info-item">
+          <div className="label">지하철</div>
           <div>
-            <span className="contact">Address</span>서울 강남구 논현로 645
+            <span className="seven">7호선 학동역</span> 4번 출구 도보 4분
           </div>
           <div>
-            <span className="contact">Contact</span>
-            02-3443-5670
+            <span className="nine">9호선 언주역</span> 2번 출구 도보 6분
           </div>
-        </div> */}
-          <div className="info-item">
-            <div className="label">내비게이션</div>
-            <div className="app-list">
-              <div
-                className="app"
-                aria-hidden="true"
-                onClick={handleClickNaverMap}
-              >
-                <img src={naverIcon} alt="" />
-                네이버 지도
-              </div>
-              <div
-                className="app"
-                aria-hidden="true"
-                onClick={handleClickKakaoMap}
-              >
-                <img src={kakaoIcon} alt="" />
-                카카오 내비
-              </div>
-              <div className="app" aria-hidden="true" onClick={handleClickTMap}>
-                <img src={tmapIcon} alt="" />
-                티맵
-              </div>
-            </div>
+        </div>
+        <div className="info-item">
+          <div className="label">버스</div>
+          <div>
+            논현동고개 (23-119)
+            <span>
+              <span className="blue">147</span>
+              <span className="blue">241</span>
+              <span className="blue">463</span>
+              <span className="green">3412</span>
+              <span className="green">4211</span>
+            </span>
           </div>
-          <div className="info-item">
-            <div className="label">지하철</div>
-            <div>
-              <span className="seven">7호선 학동역</span> 4번 출구 도보 4분
-            </div>
-            <div>
-              <span className="nine">9호선 언주역</span> 2번 출구 도보 6분
-            </div>
-          </div>
-          <div className="info-item">
-            <div className="label">버스</div>
-            <div>
-              논현동고개 (23-119)
-              <span>
-                <span className="blue">147</span>
-                <span className="blue">241</span>
-                <span className="blue">463</span>
-                <span className="green">3412</span>
-                <span className="green">4211</span>
-              </span>
-            </div>
-            <div>
-              논현고개 (23-146)
-              <span>
-                <span className="blue">147</span>
-                <span className="blue">463</span>
-                <span className="green">4211</span>
-              </span>
-            </div>
+          <div>
+            논현고개 (23-146)
+            <span>
+              <span className="blue">147</span>
+              <span className="blue">463</span>
+              <span className="green">4211</span>
+            </span>
           </div>
         </div>
       </div>

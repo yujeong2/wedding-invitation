@@ -162,9 +162,9 @@ function App() {
             <img src={purpleImg} alt="" />
             <p>푸른 하늘이 눈부신 9월의 어느날,</p>
             <p>소중한 순간들을 사랑으로 엮어</p>
-            <p>뜻깊은 날을 맞이합니다.</p>
+            <p>저희 결혼합니다.</p>
             <br />
-            <p>저희의 설레는 시작의 순간에</p>
+            <p>설레는 시작의 순간에</p>
             <p>고마운 분들을 초대합니다.</p>
             <p>따뜻한 사랑으로 축복해주세요.</p>
           </div>
@@ -203,6 +203,7 @@ function App() {
         <Location />
         <Account setCopyModal={setCopyModal} />
         <div className="rsvp">
+          <div className="sub-title">RSVP</div>
           <div className="title">참석 의사 전달</div>
           <div className="rsvp-wrapper">
             <img src={leafImg} alt="" />

@@ -136,18 +136,22 @@ html {
 
     .scroll-content {
       width: 100%;
-
-      >div {
-        width: 100%;
-        padding: 50px 0;
-      }
     }
 
-    >div {
-      &:not(.scroll-content){
-        width: 100%;
-        padding: 50px 0;
-      }
+    .main,
+    .invite,
+    .calendar,
+    .dday,
+    .gallery,
+    .information,
+    .map,
+    .account,
+    .rsvp,
+    .guestbook,
+    .share,
+    .thanks {
+      width: 100%;
+      padding: 50px 0;
     }
 
     .sub-title {
@@ -178,6 +182,7 @@ html {
       padding: 0 !important;
 
       img {
+        width: 100%;
         max-width: 510px;
       }
 
@@ -250,10 +255,7 @@ html {
       .text {
         font-family: 'RIDIBatang';
         color: #333;
-
-        @media screen and (min-width: 1024px) {
-          font-size: 20px;
-        }
+        font-size: 15px;
       }
 
       .line {
@@ -267,11 +269,16 @@ html {
         display: flex;
         flex-direction: column;
         align-items: center;
+        font-size: 14px;
   
         .name {
           height: 40px;
           display: flex;
           align-items: center;
+
+          strong {
+            font-size: 16px;
+          }
   
           .sub {
             width: 50px;
@@ -279,8 +286,8 @@ html {
           }
   
           img {
-            width: 20px;
-            margin-left: -23px;
+            width: 16px;
+            margin-left: -19px;
             margin-right: 3px;
           }
   
@@ -459,75 +466,74 @@ html {
     }
 
     .map {
+      padding-bottom: 0;
+
       .map-element {
         max-width: none;
         min-height: 300px;
       }
 
       .location-wrapper {
-        background: #F4F7F3;
-
-        padding: 30px;
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: space-between;
+        min-width: 330px;
+        max-width: 600px;
+        width: 90%;
+        height: 80px;
+        margin: 0 auto;
 
-        .location {
+        .venue {
+          display: flex;
           font-family: 'RIDIBatang';
 
-          .location-title {
-            font-size: 18px;
-            color: #364a30;
-            margin-bottom: 15px;
+          img {
+            margin-right: 5px;
           }
 
-          p {
-            color: #486340;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            margin-left: -10px;
-            font-size: 14px;
-
-            img {
-              margin-right: 5px;
-              width: 20px;
-              height: 20px;
-            }
-          }
-
-          p + p {
-            margin-top: 10px;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 4px;
+            background: #9d90b0;
+            margin-left: 28px;
+            margin-top: 18px;
+            opacity: 0.25;
           }
         }
 
-        .address, .tel {
-          font-size: 14px;
-          margin-top: 10px;
+        .venue-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          font-size: 13px;
+          color: #666;
 
-          span {
-            color: #999;
-            margin-right: 10px;
+          span + span {
+            margin-top: 5px;
           }
         }
 
+        
       }
 
       .location-info {
-        width: 330px;
+        width: 100%;
+        background: #f8f8f8;
 
-        @media screen and (min-width: 768px) {
-          width: 600px;
-        }
         .info-item {
           padding: 30px 0;
           font-size: 14px;
+          min-width: 330px;
+          max-width: 600px;
+          width: 90%;
+          margin: 0 auto;
 
           .label {
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 10px;
+            font-size: 15px;
+            margin-bottom: 20px;
+            font-family: 'RIDIBatang';
           }
 
           .contact {
@@ -600,6 +606,11 @@ html {
       .description{
         text-align: center;
         font-family: 'RIDIBatang';
+        font-size: 15px;
+
+        >img {
+          width: 50px;
+        }
       }
 
       .account-wrapper {
@@ -754,6 +765,7 @@ html {
     .information {
       max-width: 800px;
       margin: 0 auto;
+      background: #fbfafd;
 
       .tabs {
         display: flex;
@@ -795,8 +807,12 @@ html {
           box-sizing: border-box;
 
           .information-title {
-            font-size: 18px;
+            display: flex;
+            align-items: center;
             margin: 15px 0;
+
+            font-size: 15px;
+            font-family: 'RIDIBatang';
   
             span {
               font-family: 'Cormorant SC';
@@ -813,7 +829,7 @@ html {
           }
   
           .content-description {
-            font-size: 15px;
+            font-size: 14px;
             line-height: 25px;
           }
         }
@@ -837,10 +853,7 @@ html {
         .description {
           text-align: center;
           font-family: 'RIDIBatang';
-
-          @media screen and (min-width: 1024px) {
-            font-size: 20px;
-          }
+          font-size: 15px;
         }
 
         .button {
@@ -986,7 +999,7 @@ html {
         height: 50px;
         display: flex;
         align-items: center;
-        font-size: 16px;
+        font-size: 15px;
         cursor: pointer;
 
         img {
@@ -1002,12 +1015,18 @@ html {
       color: #fff;
       position: relative;
 
+      .title {
+        color: #aaa;
+      }
+
       .thanks-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin-bottom: 30px;
+        font-size: 15px;
+        color: #ccc;
 
         div + div {
           margin-top: 10px;
@@ -1021,61 +1040,6 @@ html {
         left: calc(50% - 130px);
         color: #5A585E;
       }
-    }
-  }
-
-  .interview {
-    background: #FAF7FF;
-    background-image: url("./assets/background/paper-texture.jpg");
-
-    .title {
-      height: 120px;
-      font-size: 22px;
-      text-align: center;
-      font-family: 'RIDIBatang';
-      font-weight: 500;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      .sub {
-        font-size: 14px;
-        margin-bottom: 5px;
-      }
-    }
-
-    .interview-list {
-      max-width: 550px;
-      padding: 0 40px;
-      border-top: 1px dashed #9D97A7;
-
-      .interview-item {
-        padding: 30px 0;
-        box-sizing: border-box;
-
-
-        .question {
-          font-weight: 600;
-          margin-bottom: 20px;
-
-          &:before {
-            content: 'Q.';
-            margin-right: 5px;
-          }
-        }
-
-        .answer {
-          font-size: 14px;
-        }
-      }
-    }
-
-    .close-btn {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      cursor: pointer;
     }
   }
 

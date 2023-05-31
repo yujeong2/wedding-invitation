@@ -46,7 +46,7 @@ function GuestBookModal({
       <div className="modal-background">
         <div className="rsvp-modal delete">
           <div className="title-wrapper">
-            <div className="title">메세지 삭제</div>
+            <div className="modal-title">메세지 삭제</div>
             <button type="button" onClick={() => setDeleteModal('')}>
               <img src={closeIcon} alt="" />
             </button>
