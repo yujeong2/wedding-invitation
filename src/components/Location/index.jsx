@@ -60,8 +60,8 @@ function Location() {
         }
         kakao.Navi.start({
           name: '엘리에나호텔',
-          x: 37.5112,
-          y: 127.0318,
+          x: 127.0318,
+          y: 37.5112,
           coordType: 'wgs84',
         });
       }

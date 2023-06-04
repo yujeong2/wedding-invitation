@@ -6,6 +6,7 @@ const useIntersectionObsever = (targetRef) => {
   useEffect(() => {
     if (!observer.current) {
       const observerCallback = (entries) => {
+        console.log('entries', entries);
         if (entries.length === 1) {
           entries.forEach((entry) => {
             if (entry.isIntersecting && entry.intersectionRatio < 1) {
@@ -19,7 +20,7 @@ const useIntersectionObsever = (targetRef) => {
       };
 
       observer.current = new window.IntersectionObserver(observerCallback, {
-        threshold: 0.4,
+        threshold: 0.5,
       });
     }
 

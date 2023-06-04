@@ -19,11 +19,14 @@ import Location from './components/Location';
 import RsvpModal from './components/RsvpModal';
 import ImageSlide from './components/ImageSlide';
 import GuestBook from './components/GuestBook';
+// import Contact from './components/Contact';
 
-import mainImg from './assets/photo/5.jpg';
+import mainImg from './assets/photo/main.jpg';
 import flowerIcon from './assets/icons/chrysanthemum.png';
 import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
+import arrowIcon from './assets/icons/arrow.png';
+import arrowUpIcon from './assets/icons/arrow-up.png';
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
 
@@ -77,6 +80,8 @@ function App() {
   const { lockScroll, openScroll } = useBodyScrollLock();
 
   const [loading, setLoading] = useState(true);
+
+  const [showMore, setShowMore] = useState(false);
 
   const [copyModal, setCopyModal] = useState('');
   const [rsvpModal, setRsvpModal] = useState(false);
@@ -181,23 +186,45 @@ function App() {
             </div>
           </div>
         </div>
-
+        {/* <Contact /> */}
         <Calendar />
         <DDay />
         <div className="gallery">
           <div className="sub-title">GALLERY</div>
           <div className="title">우리의 순간들</div>
           <div className="gallery-grid">
-            {Object.keys(photoList).map((photo) => (
-              <div
-                key={`photo_${photo}`}
-                onClick={() => handleClickImage(photo)}
-                aria-hidden="true"
-              >
-                <img src={photoList[photo].src} alt="" />
-              </div>
-            ))}
+            {Object.keys(photoList)
+              .slice(0, showMore ? Object.keys(photoList).length : 12)
+              .map((photo) => (
+                <div
+                  className="photo-item"
+                  key={`photo_${photo}`}
+                  onClick={() => handleClickImage(photo)}
+                  aria-hidden="true"
+                >
+                  <img src={photoList[photo].src} alt="" />
+                </div>
+              ))}
           </div>
+          {showMore ? (
+            <div
+              className="more-icon"
+              aria-hidden="true"
+              onClick={() => setShowMore(false)}
+            >
+              <img src={arrowUpIcon} alt="" />
+              사진 접기
+            </div>
+          ) : (
+            <div
+              className="more-icon"
+              aria-hidden="true"
+              onClick={() => setShowMore(true)}
+            >
+              <img src={arrowIcon} alt="" />
+              사진 더보기
+            </div>
+          )}
         </div>
         <Information />
         <Location />

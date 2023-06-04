@@ -149,6 +149,7 @@ html {
     .rsvp,
     .guestbook,
     .share,
+    .contact,
     .thanks {
       width: 100%;
       padding: 50px 0;
@@ -167,7 +168,6 @@ html {
       font-size: 16px;
       text-align: center;
       color: #444;
-      letter-spacing: 2px;
       margin-bottom: 30px;
       font-family: 'RIDIBatang';
     }
@@ -203,7 +203,7 @@ html {
         width: 100%;
         text-align: center;
         position: absolute;
-        top: 100px;
+        bottom: 0;
 
         .name {
           display: flex;
@@ -213,12 +213,12 @@ html {
           > div {
             font-size: 20px;
             text-align:center;
-            margin: 0 20px;
+            margin: 0 30px;
             color: #8167a5;
             font-family: 'RIDIBatang';
 
             p {
-              font-size: 14px;
+              font-size: 12px;
               color: #999;
               margin: 0;
               margin-top: 5px;
@@ -331,6 +331,44 @@ html {
         }
     }
 
+    .contact {
+      background: #2E2C32;
+
+      .title {
+        color: #ccc;
+      }
+
+      .contact-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        width: 400px;
+        margin: 0 auto;
+
+        .contact-item {
+          img {
+            width: 100px;
+            border-radius: 50%;
+            object-fit: cover;;
+          }
+
+          .text {
+            margin-top: 10px;
+            color: #fff;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'RIDIBatang';
+
+            span {
+              font-family: 'Pretendard Variable';
+              font-size: 12px;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
     
     .calendar {
       .month {
@@ -475,13 +513,15 @@ html {
 
       .location-wrapper {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
         min-width: 330px;
         max-width: 600px;
         width: 90%;
-        height: 80px;
+        height: 120px;
         margin: 0 auto;
+
 
         .venue {
           display: flex;
@@ -506,9 +546,11 @@ html {
         .venue-info {
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
+          align-items: flex-start;
           font-size: 13px;
           color: #666;
+          margin-top: 10px;
+          margin-left: 28px;
 
           span + span {
             margin-top: 5px;
@@ -594,7 +636,7 @@ html {
         }
 
         .info-item + .info-item {
-          border-top: 1px solid #dde7da;
+          border-top: 1px solid #ccc;
         }
       }
     }
@@ -880,13 +922,13 @@ html {
     .gallery {  
       .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(2, 120px);
-        column-gap: 10px;
-        row-gap: 10px;
+        grid-template-columns: repeat(3, 80px);
+        column-gap: 5px;
+        row-gap: 5px;
         justify-content: center;
 
-        @media screen and (min-width: 320px) {
-          grid-template-columns: repeat(2, 160px);
+        @media screen and (min-width: 340px) {
+          grid-template-columns: repeat(3, 100px);
         }
 
         @media screen and (min-width: 768px) {
@@ -898,20 +940,52 @@ html {
         }
 
 
-        >div {
+        >.photo-item {
           width: 100%;
+          height: 120px;
           cursor: pointer;
+
+          @media screen and (min-width: 340px) {
+            height: 150px;
+          }
+  
+          @media screen and (min-width: 768px) {
+            height: 300px;
+          }
+  
+          @media screen and (min-width: 1024px) {
+            height: 375px;
+          }
+  
 
           img {
             width: 100%;
+            height: 100%;
             object-fit: cover;
-            height: 267px;
             object-position: top;
 
             &:hover {
               opacity: 0.8;
             }
           }
+        }
+
+
+      }
+
+      .more-icon {
+        width: 100px;
+        cursor: pointer;
+        margin: 30px auto 0;
+        color: #907d9e;
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          width: 20px;
+          margin-bottom: 5px;
         }
       }
     }
