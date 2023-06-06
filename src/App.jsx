@@ -19,7 +19,8 @@ import Location from './components/Location';
 import RsvpModal from './components/RsvpModal';
 import ImageSlide from './components/ImageSlide';
 import GuestBook from './components/GuestBook';
-// import Contact from './components/Contact';
+import WriteModal from './components/GuestBook/WriteModal';
+import DeleteModal from './components/GuestBook/DeleteModal';
 
 import mainImg from './assets/photo/main.jpg';
 import flowerIcon from './assets/icons/chrysanthemum.png';
@@ -86,6 +87,9 @@ function App() {
   const [copyModal, setCopyModal] = useState('');
   const [rsvpModal, setRsvpModal] = useState(false);
   const [imageModal, setImageModal] = useState(false);
+  const [writeModal, setWriteModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState('');
+  const [guestbookList, setGuestbookList] = useState([]);
 
   useEffect(() => {
     const contentDiv = document.querySelector('#smooth-scroll');
@@ -167,9 +171,9 @@ function App() {
             <img src={purpleImg} alt="" />
             <p>푸른 하늘이 눈부신 9월의 어느날,</p>
             <p>소중한 순간들을 사랑으로 엮어</p>
-            <p>저희 결혼합니다.</p>
+            <p>평생을 약속하려 합니다.</p>
             <br />
-            <p>설레는 시작의 순간에</p>
+            <p>행복한 시작의 순간에</p>
             <p>고마운 분들을 초대합니다.</p>
             <p>따뜻한 사랑으로 축복해주세요.</p>
           </div>
@@ -248,7 +252,12 @@ function App() {
             </button>
           </div>
         </div>
-        <GuestBook />
+        <GuestBook
+          setWriteModal={setWriteModal}
+          setDeleteModal={setDeleteModal}
+          guestbookList={guestbookList}
+          setGuestbookList={setGuestbookList}
+        />
         <div className="share">
           <CopyToClipboard
             text={process.env.REACT_APP_MAIN_LINK}
@@ -289,6 +298,20 @@ function App() {
         <ImageSlide
           imageModal={imageModal}
           handleCloseImageModal={handleCloseImageModal}
+        />
+      )}
+      {writeModal && (
+        <WriteModal
+          setWriteModal={setWriteModal}
+          setGuestbookList={setGuestbookList}
+        />
+      )}
+      {deleteModal !== '' && (
+        <DeleteModal
+          deleteModal={deleteModal}
+          setDeleteModal={setDeleteModal}
+          guestbookList={guestbookList}
+          setGuestbookList={setGuestbookList}
         />
       )}
       <ToastContainer />

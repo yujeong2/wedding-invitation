@@ -1,17 +1,15 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line, react/prop-types */
-import React, { useState, useEffect } from 'react';
-
-import WriteModal from './WriteModal';
-import DeleteModal from './DeleteModal';
+import React, { useEffect } from 'react';
 
 import useGoogleSheet from '../../hooks/useGoogleSheet';
 import closeIcon from '../../assets/icons/close.png';
 
-function GuestBook() {
-  const [guestbookList, setGuestbookList] = useState([]);
-  const [writeModal, setWriteModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState('');
-
+function GuestBook({
+  guestbookList,
+  setGuestbookList,
+  setDeleteModal,
+  setWriteModal,
+}) {
   const [rows] = useGoogleSheet('1132076889');
 
   useEffect(() => {
@@ -25,6 +23,11 @@ function GuestBook() {
       <div className="guestbook-list">
         {guestbookList.map((o, index) => (
           <div className="guestbook-item" key={o.rowNumber}>
+            <div className="icon">
+              {o.icon
+                ? String.fromCodePoint(Number(o.icon))
+                : String.fromCodePoint(128156)}
+            </div>
             <div className="item-top">
               <div className="name">{o.name}</div>
               <div className="date">{o.date}</div>
@@ -47,20 +50,6 @@ function GuestBook() {
       >
         메세지 작성하기
       </div>
-      {writeModal && (
-        <WriteModal
-          setGuestbookList={setGuestbookList}
-          setWriteModal={setWriteModal}
-        />
-      )}
-      {deleteModal !== '' && (
-        <DeleteModal
-          guestbookList={guestbookList}
-          setGuestbookList={setGuestbookList}
-          deleteModal={deleteModal}
-          setDeleteModal={setDeleteModal}
-        />
-      )}
     </div>
   );
 }

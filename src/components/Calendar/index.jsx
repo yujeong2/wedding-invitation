@@ -1,6 +1,7 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,react/no-array-index-key */
 import React, { useState, useEffect, useRef } from 'react';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
+import heartIcon from '../../assets/icons/heart.png';
 
 function Calendar() {
   const calendarRef = useRef(null);
@@ -32,27 +33,25 @@ function Calendar() {
     <div className="calendar" ref={calendarRef}>
       <div className="month">
         <span className="month-subtext">September</span>
-        <span className="month-text">9</span>
+        <span className="month-text">9월</span>
       </div>
       <div className="calendar-wrapper">
         <div className="dayname">
-          <div>S</div>
-          <div>M</div>
-          <div>T</div>
-          <div>W</div>
-          <div>T</div>
-          <div>F</div>
-          <div>S</div>
+          <div>일</div>
+          <div>월</div>
+          <div>화</div>
+          <div>수</div>
+          <div>목</div>
+          <div>금</div>
+          <div>토</div>
         </div>
         <div className="grid">
           {calendarArray.map((week) => (
             <div className="week" key={week}>
               {week.map((day, index) => (
-                <div
-                  key={`day_${index}`}
-                  className={day === 9 ? 'day wedding' : 'day'}
-                >
-                  {day}
+                <div key={`day_${index}`} className="day">
+                  <span className={day === 9 ? 'wedding' : ''}>{day}</span>
+                  {day === 9 && <img src={heartIcon} alt="" />}
                 </div>
               ))}
             </div>
@@ -60,6 +59,7 @@ function Calendar() {
         </div>
       </div>
       <div className="date-text">23년 9월 9일 토요일 오후 2시 30분</div>
+      <div className="date-text">엘리에나호텔 컨벤션홀</div>
     </div>
   );
 }

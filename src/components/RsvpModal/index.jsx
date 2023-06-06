@@ -1,5 +1,6 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line, react/prop-types */
 import React, { useState } from 'react';
+import { isMobileOnly } from 'react-device-detect';
 
 import closeIcon from '../../assets/icons/close.png';
 import { getGoogleSheet } from '../../hooks/useGoogleSheet';
@@ -8,8 +9,7 @@ function RsvpModal({ setRsvpModal }) {
   const [data, setData] = useState({
     name: '',
     phone: '',
-    count: '',
-    party: '',
+    count: 1,
     dining: 'yes',
   });
 
@@ -32,10 +32,18 @@ function RsvpModal({ setRsvpModal }) {
     });
   };
 
+  const handleCountChange = (value) => {
+    setData((curData) => {
+      const newData = { ...curData };
+      newData.count = curData.count + value;
+      return newData;
+    });
+  };
+
   return (
     <div className="modal-wrapper">
       <div className="modal-background">
-        <div className="rsvp-modal">
+        <div className={`rsvp-modal ${isMobileOnly ? 'mobile' : 'web'}`}>
           <div className="title-wrapper">
             <div className="title">참석 의사 전달</div>
             <button type="button" onClick={() => setRsvpModal(false)}>
@@ -55,12 +63,12 @@ function RsvpModal({ setRsvpModal }) {
               </div>
             </div>
             <div className="form-item">
-              <div className="form-label">연락처</div>
+              <div className="form-label">연락처 뒷자리</div>
               <div className="form-content">
                 <input
                   type="text"
                   value={data.phone}
-                  placeholder="참석자 대표 연락처"
+                  placeholder="동명이인 구분을 위해 수집합니다"
                   onChange={(e) => handleChangeData('phone', e.target.value)}
                 />
               </div>
@@ -69,22 +77,28 @@ function RsvpModal({ setRsvpModal }) {
               <div className="form-label">참석인원</div>
               <div className="form-content">
                 <input
+                  className="count-input"
                   type="number"
+                  pattern="\d*"
                   value={data.count}
                   placeholder="본인 포함 참석 인원"
                   onChange={(e) => handleChangeData('count', e.target.value)}
                 />
-              </div>
-            </div>
-            <div className="form-item">
-              <div className="form-label">동행인</div>
-              <div className="form-content">
-                <input
-                  type="text"
-                  value={data.party}
-                  placeholder="쉼표로 구분해주세요"
-                  onChange={(e) => handleChangeData('party', e.target.value)}
-                />
+                <button
+                  disabled={data.count === 1}
+                  type="button"
+                  className="counter"
+                  onClick={() => handleCountChange(-1)}
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  className="counter"
+                  onClick={() => handleCountChange(1)}
+                >
+                  +
+                </button>
               </div>
             </div>
             <div className="form-item">
@@ -95,23 +109,14 @@ function RsvpModal({ setRsvpModal }) {
                   className={`dining ${data.dining === 'yes' ? 'active' : ''}`}
                   onClick={() => handleChangeData('dining', 'yes')}
                 >
-                  예정
+                  🙆 먹어요
                 </button>
                 <button
                   type="button"
                   className={`dining ${data.dining === 'no' ? 'active' : ''}`}
                   onClick={() => handleChangeData('dining', 'no')}
                 >
-                  안함
-                </button>
-                <button
-                  type="button"
-                  className={`dining ${
-                    data.dining === 'undefined' ? 'active' : ''
-                  }`}
-                  onClick={() => handleChangeData('dining', 'undefined')}
-                >
-                  미정
+                  🙅 안먹어요
                 </button>
               </div>
             </div>

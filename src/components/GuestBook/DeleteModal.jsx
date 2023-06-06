@@ -1,6 +1,7 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line, react/prop-types */
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { isMobileOnly } from 'react-device-detect';
 
 import closeIcon from '../../assets/icons/close.png';
 import { getGoogleSheet } from '../../hooks/useGoogleSheet';
@@ -44,7 +45,7 @@ function GuestBookModal({
   return (
     <div className="modal-wrapper">
       <div className="modal-background">
-        <div className="rsvp-modal delete">
+        <div className={`delete-modal ${isMobileOnly ? 'mobile' : 'web'}`}>
           <div className="title-wrapper">
             <div className="modal-title">메세지 삭제</div>
             <button type="button" onClick={() => setDeleteModal('')}>

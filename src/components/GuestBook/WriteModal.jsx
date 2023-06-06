@@ -1,14 +1,23 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line, react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { isMobileOnly } from 'react-device-detect';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import { toast } from 'react-toastify';
 
 import closeIcon from '../../assets/icons/close.png';
 import { getGoogleSheet } from '../../hooks/useGoogleSheet';
+
+const iconList = [
+  0x1f435, 0x1f436, 0x1f43a, 0x1f98a, 0x1f431, 0x1f981, 0x1f42f, 0x1f437,
+  0x1f42d, 0x1f439, 0x1f430, 0x1f43b, 0x1f438,
+];
 
 function GuestBookModal({ setGuestbookList, setWriteModal }) {
   const [data, setData] = useState({
     name: '',
     password: '',
     content: '',
+    icon: '',
   });
 
   const handleGoogleSheetAddRow = async (row) => {
@@ -25,6 +34,9 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
       ...data,
       date: today.toLocaleDateString(),
     });
+    toast.success('메세지가 등록되었습니다.', {
+      position: toast.POSITION.TOP_CENTER,
+    });
     setWriteModal(false);
   };
 
@@ -36,10 +48,41 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
     });
   };
 
+  useEffect(() => {
+    const randomIcon = iconList[Math.floor(Math.random() * 15)];
+    setData((curData) => {
+      const newData = { ...curData };
+      newData.icon = randomIcon;
+      return newData;
+    });
+    const scrollItem = document.getElementById(randomIcon);
+    if (scrollItem) {
+      scrollItem.scrollIntoView();
+    }
+  }, []);
+
+  const makeIconList = () => (
+    <div className="icon-list">
+      <ScrollContainer className="scroll-container">
+        {iconList.map((o) => (
+          <div
+            aria-hidden="true"
+            id={o}
+            className={`icon-item ${data.icon === o ? 'active-icon' : ''}`}
+            key={o}
+            onClick={() => handleChangeData('icon', o)}
+          >
+            {String.fromCodePoint(o)}
+          </div>
+        ))}
+      </ScrollContainer>
+    </div>
+  );
+
   return (
     <div className="modal-wrapper">
       <div className="modal-background">
-        <div className="rsvp-modal">
+        <div className={`write-modal ${isMobileOnly ? 'mobile' : 'web'}`}>
           <div className="title-wrapper">
             <div className="modal-title">신랑신부에게 메시지 남기기</div>
             <button type="button" onClick={() => setWriteModal(false)}>
@@ -47,6 +90,7 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
             </button>
           </div>
           <div className="form-wrapper">
+            {makeIconList()}
             <div className="form-item">
               <div className="form-label">닉네임</div>
               <div className="form-content">
@@ -61,6 +105,7 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
               <div className="form-label">비밀번호</div>
               <div className="form-content">
                 <input
+                  placeholder="(삭제 시 필요)"
                   type="password"
                   value={data.password}
                   onChange={(e) => handleChangeData('password', e.target.value)}
@@ -71,7 +116,7 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
               <div className="form-label">내용</div>
               <div className="form-content">
                 <textarea
-                  rows={6}
+                  rows={5}
                   type="text"
                   value={data.content}
                   onChange={(e) => handleChangeData('content', e.target.value)}

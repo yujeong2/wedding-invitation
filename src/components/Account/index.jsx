@@ -46,8 +46,8 @@ const accountInfo = {
       {
         type: '어머니',
         name: '김경애',
-        bank: '농협은행',
-        account: '302-0646-8247-31',
+        bank: '신한은행',
+        account: '110-325-774667',
       },
     ],
   },

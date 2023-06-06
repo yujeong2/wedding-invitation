@@ -33,7 +33,7 @@ function DDay() {
 
   return (
     <div className="dday">
-      <div>
+      <div className="text">
         김지환 ♥ 최유정의 결혼식까지 <span>{diffDay.day}일</span> 남았습니다.
       </div>
       <div className="count">
