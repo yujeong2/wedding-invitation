@@ -472,12 +472,23 @@ html {
       }
 
       .date-text {
-        margin: 0 auto;
-        text-align: center;
-        color: #8a78a3;
-        font-family: 'Pretendard Variable';
-        opacity: 0;
-        font-size: 15px;
+        background: #ad98bd;
+        width: 300px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        border-radius: 5px;
+        margin: 30px auto 5px;
+        font-size: 12px;
+        justify-content: space-between;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        img {
+          width: 18px;
+        }
       }
 
       .date-text + .date-text {
@@ -830,14 +841,15 @@ html {
     }
 
     .information {
-      max-width: 800px;
-      margin: 0 auto;
+
       background: #fbfafd;
 
       .tabs {
         display: flex;
         border-bottom: 1px solid #ddd;
-        padding: 0 30px;
+        max-width: 740px;
+        width: calc(100% - 60px);
+        margin: 0 auto;
 
         .tab {
           width: calc(100% / 3);
@@ -847,9 +859,14 @@ html {
           font-size: 14px;
           text-align: center;
           cursor: pointer;
+          color: #b2a3bd;
+
+          span {
+            margin-right: 5px;
+          }
 
           &.active {
-            color: #907D9E;
+            color: #907d9e;
             border-bottom: 3px solid #907D9E;
           }
         }
@@ -858,6 +875,8 @@ html {
       .contents {
         display: flex;
         width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
 
         .slick-slider {
           width: 100%;
@@ -883,21 +902,25 @@ html {
   
             span {
               font-family: 'Cormorant SC';
-              margin-right: 10px;
-              font-size: 20px;
+              margin-left: 10px;
+              font-size: 16px;
               font-weight: 600;
+              color: #907d9e;
             }
           }
   
           img {
             width: 100%;
-            height: 160px;
             object-fit: cover;
           }
   
           .content-description {
             font-size: 14px;
             line-height: 25px;
+
+            ul {
+              padding-inline-start: 20px;
+            }
           }
         }
       
@@ -1025,12 +1048,21 @@ html {
         margin: auto;
         padding: 0 20px;
 
+        .slick-slider {
+          overflow: hidden;
+        }
+
+        .slick-track {
+          display: flex;
+        }
+
         .guestbook-item {
           background: #fff;
           border: 1px solid #eee;
           border-radius: 4px;
           padding: 15px;
           position: relative;
+          box-sizing: border-box;
 
           .icon {
             position: absolute;
@@ -1077,6 +1109,38 @@ html {
 
         .guestbook-item + .guestbook-item {
           margin-top: 10px;
+        }
+      }
+
+      .index-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+
+        .arrow-wrapper {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .current-index {
+          margin: 0 10px;
+          font-size: 13px;
+          width: 70px;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          color: #999;
+
+          span:first-child {
+            font-weight: 600;
+            color: #766097;
+          }
         }
       }
 
