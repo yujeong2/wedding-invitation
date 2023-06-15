@@ -66,7 +66,8 @@ function RsvpModal({ setRsvpModal }) {
               <div className="form-label">연락처 뒷자리</div>
               <div className="form-content">
                 <input
-                  type="text"
+                  type="number"
+                  pattern="\d*"
                   value={data.phone}
                   placeholder="동명이인 구분을 위해 수집합니다"
                   onChange={(e) => handleChangeData('phone', e.target.value)}

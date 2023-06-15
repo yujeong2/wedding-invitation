@@ -1,8 +1,8 @@
 /* eslint-disable indent */
-/* eslint-disable react/prop-types, no-unused-vars,
-react/no-array-index-key,no-nested-ternary  */
+/* eslint-disable react/prop-types, no-unused-vars, no-underscore-dangle,
+react/no-array-index-key,no-nested-ternary, operator-linebreak  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import { quizList } from './data';
 
@@ -12,7 +12,11 @@ import correctIcon from '../../assets/icons/correct.png';
 import wrongIcon from '../../assets/icons/wrong.png';
 import mainImg from '../../assets/photo/18.jpg';
 
+import { getGoogleSheet } from '../../hooks/useGoogleSheet';
+
 export default function Quiz({ setQuizModal }) {
+  const googleRows = useRef(null);
+
   const [current, setCurrent] = useState(0);
   const [data, setData] = useState({
     name: '',
@@ -22,12 +26,28 @@ export default function Quiz({ setQuizModal }) {
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const handlePageMove = () => {
+  const handleAddRow = async () => {
+    const googleSheet = await getGoogleSheet();
+    const sheetsByIdElement = googleSheet.sheetsById[1748559023];
+    const result = await sheetsByIdElement.addRow({
+      name: data.name,
+      phone: data.phone,
+      score: 0,
+    });
+    googleRows.current = await result._sheet.getRows();
     setCurrent((cur) => cur + 1);
   };
 
   const handleCloseQuiz = () => {
     setQuizModal(false);
+  };
+
+  const handleChangeData = (key, value) => {
+    setData((curData) => {
+      const newData = { ...curData };
+      newData[key] = value;
+      return newData;
+    });
   };
 
   const startPage = (
@@ -39,7 +59,11 @@ export default function Quiz({ setQuizModal }) {
         <div>추첨을 통해 상품을 증정합니다!</div>
       </div>
       <img src={mainImg} alt="" className="main-img" />
-      <button className="next-button" type="button" onClick={handlePageMove}>
+      <button
+        className="next-button"
+        type="button"
+        onClick={() => setCurrent((cur) => cur + 1)}
+      >
         <img src={playIcon} alt="" />
         테스트 시작하기
       </button>
@@ -54,10 +78,19 @@ export default function Quiz({ setQuizModal }) {
         <div>동명이인을 방지하기 위해 수집합니다</div>
       </div>
       <div className="quiz-content info">
-        <input type="text" placeholder="홍길동" />
-        <input type="text" placeholder="1234" />
+        <input
+          type="text"
+          placeholder="홍길동"
+          onChange={(e) => handleChangeData('name', e.target.value)}
+        />
+        <input
+          type="number"
+          pattern="\d*"
+          placeholder="1234"
+          onChange={(e) => handleChangeData('phone', e.target.value)}
+        />
       </div>
-      <button className="next-button" type="button" onClick={handlePageMove}>
+      <button className="next-button" type="button" onClick={handleAddRow}>
         다음
       </button>
     </div>
@@ -72,10 +105,19 @@ export default function Quiz({ setQuizModal }) {
         <div>경품 지급 및 동명이인 방지 위해 수집합니다</div>
       </div>
       <div className="quiz-content">
-        <input type="text" placeholder="홍길동" />
-        <input type="text" placeholder="1234" />
+        <input
+          type="text"
+          placeholder="홍길동"
+          onChange={(e) => handleChangeData('name', e.target.value)}
+        />
+        <input
+          type="number"
+          pattern="\d*"
+          placeholder="1234"
+          onChange={(e) => handleChangeData('phone', e.target.value)}
+        />
       </div>
-      <button className="next-button" type="button" onClick={handlePageMove}>
+      <button className="next-button" type="button">
         다음
       </button>
     </div>
@@ -93,7 +135,7 @@ export default function Quiz({ setQuizModal }) {
 
   const [status, setStatus] = useState('default');
 
-  const handleAnswerQuiz = (num, index) => {
+  const handleAnswerQuiz = async (num, index) => {
     setAnswers((curObj) => {
       const newObj = { ...curObj };
       newObj[num] = index;
@@ -107,6 +149,19 @@ export default function Quiz({ setQuizModal }) {
       });
     }
     setStatus('result');
+    if (quizList[num].answer === index) {
+      const rowIndex = googleRows.current.findIndex(
+        (o) => o.name === data.name && o.phone === data.phone,
+      );
+      if (googleRows.current[rowIndex].score) {
+        googleRows.current[rowIndex].score =
+          Number(googleRows.current[rowIndex].score) + 10;
+      } else {
+        googleRows.current[rowIndex].score = 10;
+      }
+
+      await googleRows.current[rowIndex].save();
+    }
   };
 
   useEffect(() => {
@@ -118,11 +173,11 @@ export default function Quiz({ setQuizModal }) {
       setTimeout(() => {
         setCurrent((cur) => cur + 1);
         setStatus('waiting');
-      }, 800);
+      }, 1100);
     } else if (status === 'waiting') {
       setTimeout(() => {
         setStatus('default');
-      }, 800);
+      }, 1100);
     }
   }, [status]);
 

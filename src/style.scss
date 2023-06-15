@@ -1501,6 +1501,12 @@ html {
                 padding: 0 10px;
               }
 
+              input::-webkit-inner-spin-button {
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+              }
+
               textarea {
                 resize: none;
                 padding: 10px;
@@ -1670,6 +1676,8 @@ html {
       position: absolute;
       right: 20px;
       top: 20px;
+      z-index: 10;
+      cursor: pointer;
     }
 
     .quiz-page {
@@ -1760,6 +1768,12 @@ html {
           outline: none;
           text-align: center;
           font-family: 'Pretendard Variable';
+        }
+
+        input::-webkit-inner-spin-button {
+          appearance: none;
+          -moz-appearance: none;
+          -webkit-appearance: none;
         }
 
         .answer-item + .answer-item {

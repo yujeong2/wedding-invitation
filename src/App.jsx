@@ -90,7 +90,7 @@ function App() {
   const [imageModal, setImageModal] = useState(false);
   const [writeModal, setWriteModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState('');
-  const [quizModal, setQuizModal] = useState(true);
+  const [quizModal, setQuizModal] = useState(false);
 
   const [guestbookList, setGuestbookList] = useState([]);
 
