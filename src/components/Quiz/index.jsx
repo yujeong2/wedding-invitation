@@ -103,6 +103,7 @@ export default function Quiz({ setQuizModal }) {
       setData((curData) => {
         const newData = { ...curData };
         newData.score = curData.score + 10;
+        return newData;
       });
     }
     setStatus('result');
