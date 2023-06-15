@@ -18,6 +18,7 @@ import Information from './components/Information';
 import Location from './components/Location';
 import RsvpModal from './components/RsvpModal';
 import ImageSlide from './components/ImageSlide';
+import Quiz from './components/Quiz';
 import GuestBook from './components/GuestBook';
 import WriteModal from './components/GuestBook/WriteModal';
 import DeleteModal from './components/GuestBook/DeleteModal';
@@ -89,6 +90,8 @@ function App() {
   const [imageModal, setImageModal] = useState(false);
   const [writeModal, setWriteModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState('');
+  const [quizModal, setQuizModal] = useState(true);
+
   const [guestbookList, setGuestbookList] = useState([]);
 
   useEffect(() => {
@@ -120,6 +123,10 @@ function App() {
   const handleCloseImageModal = () => {
     setImageModal('');
     openScroll();
+  };
+
+  const handleClickQuiz = () => {
+    setQuizModal(true);
   };
 
   setTimeout(() => {
@@ -233,8 +240,28 @@ function App() {
         <Information />
         <Location />
         <Account setCopyModal={setCopyModal} />
+        <div className="quiz">
+          <div className="sub-title">join us</div>
+          <div className="title">신랑신부 퀴즈 풀기</div>
+          <div className="quiz-wrapper">
+            {/* <img src={leafImg} alt="" /> */}
+            <div className="description">
+              <p>신랑신부에 대한 퀴즈를 풀어보세요!</p>
+              <p>참여해 주신 분들과</p>
+              <p>고득점을 얻은 분들께는</p>
+              <p>결혼식 2부 진행 시</p>
+              <p>추첨을 통해 상품을 드립니다🎁</p>
+              <br />
+              <p>신랑신부에 대해 알아가는</p>
+              <p>재밌는 시간이 되길 바랍니다😊</p>
+            </div>
+            <button className="button" type="button" onClick={handleClickQuiz}>
+              퀴즈 풀어보기
+            </button>
+          </div>
+        </div>
         <div className="rsvp">
-          <div className="sub-title">RSVP</div>
+          <div className="sub-title">save the date</div>
           <div className="title">참석 의사 전달</div>
           <div className="rsvp-wrapper">
             <img src={leafImg} alt="" />
@@ -252,6 +279,7 @@ function App() {
             </button>
           </div>
         </div>
+
         <GuestBook
           setWriteModal={setWriteModal}
           setDeleteModal={setDeleteModal}
@@ -314,6 +342,7 @@ function App() {
           setGuestbookList={setGuestbookList}
         />
       )}
+      {quizModal && <Quiz setQuizModal={setQuizModal} />}
       <ToastContainer />
     </div>
   );
