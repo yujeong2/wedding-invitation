@@ -232,6 +232,7 @@ export default function Quiz({ handleCloseQuiz }) {
   };
 
   useEffect(() => {
+    console.log('status', status);
     if (status === 'result') {
       setTimeout(() => {
         setStatus('answered');
@@ -239,10 +240,9 @@ export default function Quiz({ handleCloseQuiz }) {
     } else if (status === 'answered') {
       setTimeout(() => {
         setCurrent((cur) => cur + 1);
-      }, 1000);
-      if (current < 13) {
         setStatus('waiting');
-      } else {
+      }, 1000);
+      if (current === 13) {
         setLoading(true);
         setTimeout(() => {
           setLoading(false);
