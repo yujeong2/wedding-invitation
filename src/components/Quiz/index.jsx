@@ -239,15 +239,15 @@ export default function Quiz({ handleCloseQuiz }) {
     } else if (status === 'answered') {
       setTimeout(() => {
         setCurrent((cur) => cur + 1);
-        if (current < 13) {
-          setStatus('waiting');
-        } else {
-          setLoading(true);
-          setTimeout(() => {
-            setLoading(false);
-          }, 1500);
-        }
       }, 1000);
+      if (current < 13) {
+        setStatus('waiting');
+      } else {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
+      }
     } else if (status === 'waiting') {
       setTimeout(() => {
         setStatus('default');
