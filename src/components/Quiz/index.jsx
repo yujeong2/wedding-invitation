@@ -119,8 +119,7 @@ export default function Quiz({ handleCloseQuiz }) {
               onChange={(e) => handleChangeData('name', e.target.value)}
             />
             <input
-              type="number"
-              pattern="\d*"
+              type="text"
               placeholder="1234"
               onChange={(e) => handleChangeData('phone', e.target.value)}
             />
