@@ -14,7 +14,7 @@ import mainImg from '../../assets/photo/18.jpg';
 
 import { getGoogleSheet } from '../../hooks/useGoogleSheet';
 
-export default function Quiz({ setQuizModal }) {
+export default function Quiz({ handleCloseQuiz }) {
   const googleRows = useRef(null);
 
   const [current, setCurrent] = useState(0);
@@ -45,10 +45,6 @@ export default function Quiz({ setQuizModal }) {
       setLoading(false);
       setCurrent((cur) => cur + 1);
     }
-  };
-
-  const handleCloseQuiz = () => {
-    setQuizModal(false);
   };
 
   const handleChangeData = (key, value) => {
@@ -163,7 +159,7 @@ export default function Quiz({ setQuizModal }) {
               {data.score > 70
                 ? '전문가시군요😎'
                 : data.score > 40
-                ? '친한 친구시네요🤗'
+                ? '가까운 사이시군요🤗'
                 : data.score > 10
                 ? '조금 더 친해져요😉'
                 : '앞으로 알아갈 사이😍'}

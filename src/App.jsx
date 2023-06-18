@@ -128,6 +128,12 @@ function App() {
 
   const handleClickQuiz = () => {
     setQuizModal(true);
+    lockScroll();
+  };
+
+  const handleCloseQuiz = () => {
+    setQuizModal(false);
+    openScroll();
   };
 
   setTimeout(() => {
@@ -343,7 +349,7 @@ function App() {
           setGuestbookList={setGuestbookList}
         />
       )}
-      {quizModal && <Quiz setQuizModal={setQuizModal} />}
+      {quizModal && <Quiz handleCloseQuiz={handleCloseQuiz} />}
       <ToastContainer />
     </div>
   );
