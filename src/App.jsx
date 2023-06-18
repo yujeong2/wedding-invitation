@@ -31,6 +31,7 @@ import arrowIcon from './assets/icons/arrow.png';
 import arrowUpIcon from './assets/icons/arrow-up.png';
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
+import basketImg from './assets/background/pink.png';
 
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -90,7 +91,7 @@ function App() {
   const [imageModal, setImageModal] = useState(false);
   const [writeModal, setWriteModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState('');
-  const [quizModal, setQuizModal] = useState(false);
+  const [quizModal, setQuizModal] = useState(true);
 
   const [guestbookList, setGuestbookList] = useState([]);
 
@@ -176,12 +177,12 @@ function App() {
           {/* <div className="title">Invitation</div> */}
           <div className="text">
             <img src={purpleImg} alt="" />
-            <p>푸른 하늘이 눈부신 9월의 어느날,</p>
-            <p>소중한 순간들을 사랑으로 엮어</p>
-            <p>평생을 약속하려 합니다.</p>
+            <p>지환 그리고 유정,</p>
+            <p>한 곳을 바라보며 첫 발을 떼는 날</p>
+            <p>곁에서 아껴주셨던 고마운 분들을 모십니다..</p>
             <br />
-            <p>행복한 시작의 순간에</p>
-            <p>고마운 분들을 초대합니다.</p>
+            <p>서로 소중히 아끼고 처음처럼 사랑하며</p>
+            <p>예쁘게 살겠습니다.</p>
             <p>따뜻한 사랑으로 축복해주세요.</p>
           </div>
           <div className="line" />
@@ -237,14 +238,11 @@ function App() {
             </div>
           )}
         </div>
-        <Information />
-        <Location />
-        <Account setCopyModal={setCopyModal} />
         <div className="quiz">
           <div className="sub-title">join us</div>
           <div className="title">신랑신부 퀴즈 풀기</div>
           <div className="quiz-wrapper">
-            {/* <img src={leafImg} alt="" /> */}
+            <img src={basketImg} alt="" />
             <div className="description">
               <p>신랑신부에 대한 퀴즈를 풀어보세요!</p>
               <p>참여해 주신 분들과</p>
@@ -260,6 +258,9 @@ function App() {
             </button>
           </div>
         </div>
+        <Information />
+        <Location />
+        <Account setCopyModal={setCopyModal} />
         <div className="rsvp">
           <div className="sub-title">save the date</div>
           <div className="title">참석 의사 전달</div>

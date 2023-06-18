@@ -1,12 +1,12 @@
 export const quizList = {
   1: {
-    question: '두 사람이 처음 만난 계절은?',
+    question: '두 사람이 처음 서로를 알게 된 계절은?',
     answerList: ['봄 🌸', '여름 🌻', '가을 🍁', '겨울 ⛄'],
     answer: 1,
   },
   2: {
     question: '둘이 가 본 적 없는 국내 여행지는?🎈',
-    answerList: ['제주', '부산', '서산', '경주'],
+    answerList: ['제주', '부산', '남해', '경주'],
     answer: 3,
   },
   3: {
@@ -46,12 +46,7 @@ export const quizList = {
   },
   8: {
     question: '둘이 같이 본 영화가 아닌 것은?🎥',
-    answerList: [
-      '슬램덩크',
-      '스즈메의 문단속',
-      '탑건:매버릭',
-      '닥터 스트레인지: 대혼돈의 멀티버스',
-    ],
+    answerList: ['슬램덩크', '아바타: 물의 길', '탑건: 매버릭', '헤어질 결심'],
     answer: 0,
   },
   9: {
