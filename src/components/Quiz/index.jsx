@@ -239,7 +239,7 @@ export default function Quiz({ setQuizModal }) {
     if (status === 'result') {
       setTimeout(() => {
         setStatus('answered');
-      }, 800);
+      }, 600);
     } else if (status === 'answered') {
       setTimeout(() => {
         setCurrent((cur) => cur + 1);
@@ -251,11 +251,11 @@ export default function Quiz({ setQuizModal }) {
             setLoading(false);
           }, 1500);
         }
-      }, 1100);
+      }, 1000);
     } else if (status === 'waiting') {
       setTimeout(() => {
         setStatus('default');
-      }, 1100);
+      }, 1000);
     }
   }, [status]);
 
