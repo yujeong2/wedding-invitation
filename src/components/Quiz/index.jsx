@@ -228,26 +228,31 @@ export default function Quiz({ handleCloseQuiz }) {
 
       await googleRows.current[rowIndex].save();
     }
+
+    if (num === 10) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
+    }
   };
 
   useEffect(() => {
+    console.log(status);
     if (status === 'result') {
       setTimeout(() => {
+        console.log('result timeout');
         setStatus('answered');
       }, 600);
     } else if (status === 'answered') {
       setTimeout(() => {
+        console.log('answered timeout');
         setCurrent((cur) => cur + 1);
         setStatus('waiting');
       }, 1000);
-      if (current === 13) {
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1500);
-      }
     } else if (status === 'waiting') {
       setTimeout(() => {
+        console.log('waiting timeout');
         setStatus('default');
       }, 1000);
     }
