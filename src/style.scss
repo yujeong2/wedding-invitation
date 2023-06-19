@@ -72,14 +72,14 @@
     opacity: 1;
   }
   100% {
-    transform: translateX(-600px);
+    transform: translateX(-100px);
     opacity: 0;
   }
 }
 
 @keyframes slide-in-right {
   0% {
-    transform: translateX(600px);
+    transform: translateX(100px);
     opacity: 0;
   }
   100% {
@@ -396,21 +396,25 @@ html {
               animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000)  both;
             }
             &:nth-child(3){
-              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s both;
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
             }
             &:nth-child(4){
-              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.8s both;
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
             }
             &:nth-child(6){
-              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.2s both;
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.5s both;
             }
             &:nth-child(7){
-              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.6s both;
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.5s both;
             }
             &:nth-child(8){
-              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 2s both;
+              animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.5s both;
             }
           }
+        }
+
+        .name-wrapper {
+          animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s both;
         }
         }
     }
@@ -764,7 +768,7 @@ html {
     .account {
       margin: 0 auto;
       background: #fff;
-      background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
+      background-image: url("https://www.transparenttextures.com/patterns/groovepaper.png");
 
       .description{
         text-align: center;
@@ -777,6 +781,7 @@ html {
       }
 
       .account-wrapper {
+        max-width: 550px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -852,6 +857,7 @@ html {
                   justify-content: center;
 
                   font-size: 13px;
+                  cursor: pointer;
                 }
 
                 .kakao {
@@ -1013,7 +1019,6 @@ html {
     }
 
     .rsvp {
-      background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(241,237,246,1) 100%);
 
       .rsvp-wrapper {
         display: flex;
@@ -1414,18 +1419,11 @@ html {
         }
 
         &.web {
-          width: 260px;
-          height: 440px;
-          top: calc(50% - 220px);
-          left: calc(50% - 130px);
+          width: 350px;
+          height: 330px;
+          top: calc(50% - 160px);
+          left: calc(50% - 175px);
           border-radius: 10px;
-
-          @media screen and (min-width: 320px){
-            width: 350px;
-            height: 300px;
-            top: calc(50% - 150px);
-            left: calc(50% - 175px);
-          }
   
           @media  screen and (min-width: 1024px) {
             width: 400px;
@@ -1436,11 +1434,11 @@ html {
         &.mobile {
           border-radius: 10px 10px 0 0;
           width: 100%;
-          height: 410px;
+          height: 420px;
           bottom: 0;
 
           @media screen and (min-width: 320px){
-            height: 300px;
+            height: 330px;
           }
         }
    
@@ -1493,6 +1491,12 @@ html {
             display: flex;
             align-items: flex-start;
             flex-direction: column;
+
+            .warning {
+              margin-top: 10px;
+              color: #e22f2f;
+              font-size: 12px;
+            }
 
             .form-label {
               width: 110px;
@@ -1581,17 +1585,27 @@ html {
             margin-top: 12px;
           }
         }
+
+
       }
 
       >.write-modal {
-        height: 370px !important;
+        height: 465px !important;
+
+        @media screen and (min-width: 320px) {
+          height: 400px !important;
+        }
 
         .form-label {
           width: 80px !important;
         }
 
         .form-content {
-          width: calc(100% - 80px) !important;
+          width: 100% !important;
+
+          @media screen and (min-width: 320px) {
+            width: calc(100% - 80px) !important;
+          }
         }
 
         &.mobile {
@@ -1630,7 +1644,7 @@ html {
           align-items: center;
           justify-content: center;
 
-          color: #d2c6e3;
+          color: #9080a6;
           font-family: 'RIDIBatang';
           
           span {
@@ -1686,7 +1700,7 @@ html {
     top: 0;
     height: 100%;
     width: 100%;
-    z-index: 2;
+    z-index: 100;
     padding: 0 !important;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(241,237,246,1) 100%);
 
@@ -1711,7 +1725,7 @@ html {
 
       .quiz-slider-wrapper {
         position: absolute;
-        top: 70px;
+        top: 60px;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -1722,13 +1736,13 @@ html {
           color: #999;
           display: flex;
           justify-content: flex-end;
-          width: 80%;
+          width: 70%;
           margin-bottom: 5px;
         }
 
         .quiz-slider {
-          width: 85%;
-          height: 25px;
+          width: 75%;
+          height: 20px;
           border-radius: 20px;
           background: #ddd;
 
@@ -1883,7 +1897,6 @@ html {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 50px;
 
         input {
           width: 100px;
@@ -1926,7 +1939,7 @@ html {
         font-size: 40px;
         font-weight: 600;
         color: #907d9e;
-        margin: 0 auto 50px;
+        margin: 20px auto 30px;
       }
 
       .answer-item {
@@ -1954,10 +1967,6 @@ html {
           right: 15px;
           width: 25px;
           height: 25px;
-        }
-
-        &:hover {
-          opacity: 0.8;
         }
 
         &.correct {

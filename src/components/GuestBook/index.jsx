@@ -11,8 +11,8 @@ import rightIcon from '../../assets/icons/chevron-right-custom.png';
 function GuestBook({
   guestbookList,
   setGuestbookList,
-  setDeleteModal,
-  setWriteModal,
+  handleDeleteModal,
+  handleWriteModal,
 }) {
   const sliderRef = useRef(null);
   const [rows] = useGoogleSheet('1132076889');
@@ -67,7 +67,7 @@ function GuestBook({
                 <div className="date">{o.date}</div>
                 <div
                   className="delete-icon"
-                  onClick={() => setDeleteModal(index)}
+                  onClick={() => handleDeleteModal(index)}
                   aria-hidden="true"
                 >
                   <img src={closeIcon} alt="" />
@@ -103,7 +103,7 @@ function GuestBook({
       <div
         className="guestbook-add"
         aria-hidden="true"
-        onClick={() => setWriteModal(true)}
+        onClick={() => handleWriteModal('open')}
       >
         메세지 작성하기
       </div>

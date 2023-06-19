@@ -30,7 +30,7 @@ export default function Quiz({ handleCloseQuiz }) {
   const handleAddRow = async () => {
     if (!data.name || data.name.length < 2) {
       setInputCheck('name');
-    } else if (!data.phone || data.phone.length !== 4) {
+    } else if (!data.phone || data.phone.length !== 4 || !Number(data.phone)) {
       setInputCheck('phone');
     } else {
       setLoading(true);
@@ -57,7 +57,7 @@ export default function Quiz({ handleCloseQuiz }) {
 
   const startPage = (
     <div className="quiz-page start">
-      <div className="title">유정 🤍 지환 퀴즈</div>
+      <div className="title">유정 ♥ 지환 퀴즈</div>
       <div className="desc">
         <div>신랑신부에 대한 퀴즈를 풀어보세요!</div>
         <div>참여자와 고득점자에겐 결혼식 당일 2부에서</div>
@@ -108,7 +108,7 @@ export default function Quiz({ handleCloseQuiz }) {
           <div className="quiz-question">
             이름과 휴대전화 뒷번호를 알려주세요!
           </div>
-          <div className="desc">
+          <div className="desc info">
             <div>경품을 추첨하고,</div>
             <div>동명이인을 방지하기 위해 수집합니다</div>
           </div>
@@ -231,7 +231,6 @@ export default function Quiz({ handleCloseQuiz }) {
   };
 
   useEffect(() => {
-    console.log('status', status);
     if (status === 'result') {
       setTimeout(() => {
         setStatus('answered');

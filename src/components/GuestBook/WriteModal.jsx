@@ -12,13 +12,14 @@ const iconList = [
   0x1f42d, 0x1f439, 0x1f430, 0x1f43b, 0x1f438,
 ];
 
-function GuestBookModal({ setGuestbookList, setWriteModal }) {
+function GuestBookModal({ setGuestbookList, handleWriteModal }) {
   const [data, setData] = useState({
     name: '',
     password: '',
     content: '',
     icon: '',
   });
+  const [warning, setWarning] = useState('');
 
   const handleGoogleSheetAddRow = async (row) => {
     const googleSheet = await getGoogleSheet();
@@ -29,15 +30,23 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
   };
 
   const handleClickSubmit = () => {
-    const today = new Date();
-    handleGoogleSheetAddRow({
-      ...data,
-      date: today.toLocaleDateString(),
-    });
-    toast.success('메세지가 등록되었습니다.', {
-      position: toast.POSITION.TOP_CENTER,
-    });
-    setWriteModal(false);
+    if (!data.name) {
+      setWarning('name');
+    } else if (!data.password || data.password.length < 4) {
+      setWarning('password');
+    } else if (!data.content) {
+      setWarning('content');
+    } else {
+      const today = new Date();
+      handleGoogleSheetAddRow({
+        ...data,
+        date: today.toLocaleDateString(),
+      });
+      toast.success('메세지가 등록되었습니다.', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      handleWriteModal('close');
+    }
   };
 
   const handleChangeData = (type, value) => {
@@ -85,7 +94,7 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
         <div className={`write-modal ${isMobileOnly ? 'mobile' : 'web'}`}>
           <div className="title-wrapper">
             <div className="modal-title">신랑신부에게 메시지 남기기</div>
-            <button type="button" onClick={() => setWriteModal(false)}>
+            <button type="button" onClick={() => handleWriteModal('close')}>
               <img src={closeIcon} alt="" />
             </button>
           </div>
@@ -99,6 +108,11 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
                   value={data.name}
                   onChange={(e) => handleChangeData('name', e.target.value)}
                 />
+                {warning === 'name' && (
+                  <div className="warning">
+                    닉네임을 1글자 이상 입력해주세요.
+                  </div>
+                )}
               </div>
             </div>
             <div className="form-item">
@@ -110,6 +124,11 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
                   value={data.password}
                   onChange={(e) => handleChangeData('password', e.target.value)}
                 />
+                {warning === 'password' && (
+                  <div className="warning">
+                    비밀번호를 4글자 이상 입력해주세요.
+                  </div>
+                )}
               </div>
             </div>
             <div className="form-item">
@@ -121,6 +140,9 @@ function GuestBookModal({ setGuestbookList, setWriteModal }) {
                   value={data.content}
                   onChange={(e) => handleChangeData('content', e.target.value)}
                 />
+                {warning === 'content' && (
+                  <div className="warning">내용을 입력해주세요.</div>
+                )}
               </div>
             </div>
           </div>

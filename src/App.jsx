@@ -1,11 +1,11 @@
 /* eslint-disable no-alert, no-new, react/jsx-one-expression-per-line,
 react/no-array-index-key,no-nested-ternary, indent  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer } from 'react-toastify';
-import scrollbar from 'smooth-scrollbar';
-import { isIOS, isAndroid } from 'react-device-detect';
+// import scrollbar from 'smooth-scrollbar';
+// import { isIOS, isAndroid } from 'react-device-detect';
 
 import useScrollFadeIn from './hooks/useScrollFadeIn';
 import useBodyScrollLock from './hooks/useBodyScrollLock';
@@ -24,7 +24,7 @@ import WriteModal from './components/GuestBook/WriteModal';
 import DeleteModal from './components/GuestBook/DeleteModal';
 
 import mainImg from './assets/photo/main.jpg';
-import flowerIcon from './assets/icons/chrysanthemum.png';
+import flowerIcon from './assets/icons/daisy.png';
 import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
 import arrowIcon from './assets/icons/arrow.png';
@@ -95,14 +95,14 @@ function App() {
 
   const [guestbookList, setGuestbookList] = useState([]);
 
-  useEffect(() => {
-    const contentDiv = document.querySelector('#smooth-scroll');
-    if (contentDiv && !isAndroid && !isIOS) {
-      scrollbar.init(contentDiv, {
-        damping: 0.02,
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const contentDiv = document.querySelector('#smooth-scroll');
+  //   if (contentDiv && !isAndroid && !isIOS) {
+  //     scrollbar.init(contentDiv, {
+  //       damping: 0.02,
+  //     });
+  //   }
+  // }, []);
 
   const handleCopyOk = () => {
     setCopyModal('link');
@@ -110,10 +110,6 @@ function App() {
 
   const handleCloseLinkModal = () => {
     setCopyModal('');
-  };
-
-  const handleClickRsvp = () => {
-    setRsvpModal(true);
   };
 
   const handleClickImage = (key) => {
@@ -140,12 +136,42 @@ function App() {
     setLoading(false);
   }, 2500);
 
+  const handleClickRsvp = () => {
+    setRsvpModal(true);
+    lockScroll();
+  };
+
+  const handleCloseRsvpModal = () => {
+    setRsvpModal(false);
+    openScroll();
+  };
+
+  const handleWriteModal = (flag) => {
+    if (flag === 'open') {
+      setWriteModal(true);
+      lockScroll();
+    } else {
+      setWriteModal(false);
+      openScroll();
+    }
+  };
+
+  const handleDeleteModal = (index) => {
+    if (index !== undefined) {
+      setDeleteModal(index);
+      lockScroll();
+    } else {
+      setDeleteModal('');
+      openScroll();
+    }
+  };
+
   return (
     <div className="invitation">
       {loading && (
         <div className="loading">
           <div className="decoration">Our Wedding Day</div>
-          <div className="loading-content">유정 🤍 지환</div>
+          <div className="loading-content">유정 ♥ 지환</div>
         </div>
       )}
       <div className="header">
@@ -185,7 +211,7 @@ function App() {
             <img src={purpleImg} alt="" />
             <p>지환 그리고 유정,</p>
             <p>한 곳을 바라보며 첫 발을 떼는 날</p>
-            <p>곁에서 아껴주셨던 고마운 분들을 모십니다..</p>
+            <p>곁에서 아껴주셨던 고마운 분들을 모십니다.</p>
             <br />
             <p>서로 소중히 아끼고 처음처럼 사랑하며</p>
             <p>예쁘게 살겠습니다.</p>
@@ -288,8 +314,8 @@ function App() {
         </div>
 
         <GuestBook
-          setWriteModal={setWriteModal}
-          setDeleteModal={setDeleteModal}
+          handleWriteModal={handleWriteModal}
+          handleDeleteModal={handleDeleteModal}
           guestbookList={guestbookList}
           setGuestbookList={setGuestbookList}
         />
@@ -328,7 +354,7 @@ function App() {
           </button>
         </div>
       )}
-      {rsvpModal && <RsvpModal setRsvpModal={setRsvpModal} />}
+      {rsvpModal && <RsvpModal handleCloseRsvpModal={handleCloseRsvpModal} />}
       {imageModal && (
         <ImageSlide
           imageModal={imageModal}
@@ -337,14 +363,14 @@ function App() {
       )}
       {writeModal && (
         <WriteModal
-          setWriteModal={setWriteModal}
+          handleWriteModal={handleWriteModal}
           setGuestbookList={setGuestbookList}
         />
       )}
       {deleteModal !== '' && (
         <DeleteModal
           deleteModal={deleteModal}
-          setDeleteModal={setDeleteModal}
+          handleDeleteModal={handleDeleteModal}
           guestbookList={guestbookList}
           setGuestbookList={setGuestbookList}
         />

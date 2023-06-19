@@ -10,7 +10,7 @@ function GuestBookModal({
   guestbookList,
   setGuestbookList,
   deleteModal,
-  setDeleteModal,
+  handleDeleteModal,
 }) {
   const [data, setData] = useState('');
 
@@ -34,7 +34,7 @@ function GuestBookModal({
         newList.splice(deleteModal, 1);
         return newList;
       });
-      setDeleteModal('');
+      handleDeleteModal();
     }
   };
 
@@ -48,7 +48,7 @@ function GuestBookModal({
         <div className={`delete-modal ${isMobileOnly ? 'mobile' : 'web'}`}>
           <div className="title-wrapper">
             <div className="modal-title">메세지 삭제</div>
-            <button type="button" onClick={() => setDeleteModal('')}>
+            <button type="button" onClick={() => handleDeleteModal('close')}>
               <img src={closeIcon} alt="" />
             </button>
           </div>
