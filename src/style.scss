@@ -615,8 +615,15 @@ html {
         }
       }
 
+      .count-name {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        width: 135px;
+        font-family: 'Cormorant SC';
+      }
+
       .count {
-        margin-top: 10px;
         font-size: 24px;
         font-family: 'Cormorant SC';
 

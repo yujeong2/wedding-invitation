@@ -29,15 +29,21 @@ function DDay() {
     });
   };
 
-  setInterval(makeDiffDay, 1000);
+  setTimeout(makeDiffDay, 1000);
 
   return (
     <div className="dday">
       <div className="text">
         김지환 ♥ 최유정의 결혼식까지 <span>{diffDay.day}일</span> 남았습니다.
       </div>
+      <div className="count-name">
+        <span>day</span>
+        <span>hour</span>
+        <span>min</span>
+        <span>sec</span>
+      </div>
       <div className="count">
-        {diffDay.hour} : {diffDay.min} : {diffDay.sec}
+        {diffDay.day} : {diffDay.hour} : {diffDay.min} : {diffDay.sec}
       </div>
     </div>
   );

@@ -82,6 +82,7 @@ function RsvpModal({ handleCloseRsvpModal }) {
               <div className="form-content">
                 <input
                   value={data.phone}
+                  maxLength={4}
                   placeholder="동명이인 구분을 위해 수집합니다"
                   onChange={(e) => handleChangeData('phone', e.target.value)}
                 />

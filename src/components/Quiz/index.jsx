@@ -121,6 +121,7 @@ export default function Quiz({ handleCloseQuiz }) {
             <input
               type="text"
               placeholder="1234"
+              maxLength={4}
               onChange={(e) => handleChangeData('phone', e.target.value)}
             />
           </div>
@@ -238,21 +239,17 @@ export default function Quiz({ handleCloseQuiz }) {
   };
 
   useEffect(() => {
-    console.log(status);
     if (status === 'result') {
       setTimeout(() => {
-        console.log('result timeout');
         setStatus('answered');
       }, 600);
     } else if (status === 'answered') {
       setTimeout(() => {
-        console.log('answered timeout');
         setCurrent((cur) => cur + 1);
         setStatus('waiting');
       }, 1000);
     } else if (status === 'waiting') {
       setTimeout(() => {
-        console.log('waiting timeout');
         setStatus('default');
       }, 1000);
     }
