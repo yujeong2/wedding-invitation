@@ -3,7 +3,7 @@ react/prop-types, react/jsx-one-expression-per-line */
 import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 
-import photoList from '../../photo';
+import photoList from '../Gallery/photo';
 import closeIcon from '../../assets/icons/close-light.png';
 
 function ImageSlide({ imageModal, handleCloseImageModal }) {
@@ -63,7 +63,7 @@ function ImageSlide({ imageModal, handleCloseImageModal }) {
           >
             <Slider ref={sliderRef} {...settings}>
               {Object.keys(photoList).map((photo) => (
-                <img src={photoList[photo].src} alt="" key={`photo_${photo}`} />
+                <img src={photoList[photo]} alt="" key={`photo_${photo}`} />
               ))}
             </Slider>
           </div>

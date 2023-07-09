@@ -5,11 +5,9 @@ import React, { useState, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer } from 'react-toastify';
 // import scrollbar from 'smooth-scrollbar';
-// import { isIOS, isAndroid } from 'react-device-detect';
 
 import useScrollFadeIn from './hooks/useScrollFadeIn';
 import useBodyScrollLock from './hooks/useBodyScrollLock';
-import photoList from './photo';
 
 import Account from './components/Account';
 import Calendar from './components/Calendar';
@@ -17,6 +15,7 @@ import DDay from './components/DDay';
 import Information from './components/Information';
 import Location from './components/Location';
 import RsvpModal from './components/RsvpModal';
+import Gallery from './components/Gallery';
 import ImageSlide from './components/ImageSlide';
 import Quiz from './components/Quiz';
 import GuestBook from './components/GuestBook';
@@ -27,8 +26,7 @@ import mainImg from './assets/photo/main.jpg';
 import flowerIcon from './assets/icons/daisy.png';
 import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
-import arrowIcon from './assets/icons/arrow.png';
-import arrowUpIcon from './assets/icons/arrow-up.png';
+
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
 import basketImg from './assets/background/pink.png';
@@ -83,8 +81,6 @@ function App() {
   const { lockScroll, openScroll } = useBodyScrollLock();
 
   const [loading, setLoading] = useState(true);
-
-  const [showMore, setShowMore] = useState(false);
 
   const [copyModal, setCopyModal] = useState('');
   const [rsvpModal, setRsvpModal] = useState(false);
@@ -233,43 +229,7 @@ function App() {
         {/* <Contact /> */}
         <Calendar />
         <DDay />
-        <div className="gallery">
-          <div className="sub-title">GALLERY</div>
-          <div className="title">우리의 순간들</div>
-          <div className="gallery-grid">
-            {Object.keys(photoList)
-              .slice(0, showMore ? Object.keys(photoList).length : 12)
-              .map((photo) => (
-                <div
-                  className="photo-item"
-                  key={`photo_${photo}`}
-                  onClick={() => handleClickImage(photo)}
-                  aria-hidden="true"
-                >
-                  <img src={photoList[photo].src} alt="" />
-                </div>
-              ))}
-          </div>
-          {showMore ? (
-            <div
-              className="more-icon"
-              aria-hidden="true"
-              onClick={() => setShowMore(false)}
-            >
-              <img src={arrowUpIcon} alt="" />
-              사진 접기
-            </div>
-          ) : (
-            <div
-              className="more-icon"
-              aria-hidden="true"
-              onClick={() => setShowMore(true)}
-            >
-              <img src={arrowIcon} alt="" />
-              사진 더보기
-            </div>
-          )}
-        </div>
+        <Gallery handleClickImage={handleClickImage} />
         <div className="quiz">
           <div className="sub-title">join us</div>
           <div className="title">신랑신부 퀴즈 풀기</div>

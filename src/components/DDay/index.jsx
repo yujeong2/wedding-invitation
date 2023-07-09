@@ -34,16 +34,30 @@ function DDay() {
   return (
     <div className="dday">
       <div className="text">
-        김지환 ♥ 최유정의 결혼식까지 <span>{diffDay.day}일</span> 남았습니다.
-      </div>
-      <div className="count-name">
-        <span>day</span>
-        <span>hour</span>
-        <span>min</span>
-        <span>sec</span>
+        유정&nbsp;
+        <span>♥</span> 지환의 결혼식까지 <span>{diffDay.day}일</span>{' '}
+        남았습니다.
       </div>
       <div className="count">
-        {diffDay.day} : {diffDay.hour} : {diffDay.min} : {diffDay.sec}
+        <div className="count-item">
+          <div>{diffDay.day}</div>
+          <div>days</div>
+        </div>
+        <span>:</span>
+        <div className="count-item">
+          <div>{diffDay.hour}</div>
+          <div>hour</div>
+        </div>
+        <span>:</span>
+        <div className="count-item">
+          <div>{diffDay.min}</div>
+          <div>min</div>
+        </div>
+        <span>:</span>
+        <div className="count-item">
+          <div>{diffDay.sec}</div>
+          <div>sec</div>
+        </div>
       </div>
     </div>
   );

@@ -268,9 +268,11 @@ html {
       img {
         width: 100%;
         max-width: 650px;
+        margin-top: 45px;
       }
 
       .img-decoration {
+        display: none;
         position: absolute;
         width: calc(100% - 40px);
         color: #8e75b8;
@@ -288,6 +290,7 @@ html {
         text-align: center;
         position: absolute;
         bottom: 0;
+        display: none;
 
         .name {
           display: flex;
@@ -599,37 +602,51 @@ html {
     }
 
     .dday {
-      background: #2E2C32;
-      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 30px;
+      padding-bottom: 25px;
       font-size: 13px;
       box-sizing: border-box;
+      border-top: 1px solid #e4dee9;
+      border-bottom: 1px solid #e4dee9;
+      background: #f3f0f5;
       
       .text {
         span {
           font-weight: 600;
+          color: #907D9E;
         }
       }
 
-      .count-name {
-        margin-top: 20px;
-        display: flex;
-        justify-content: space-between;
-        width: 135px;
-        font-family: 'Cormorant SC';
-      }
-
       .count {
-        font-size: 24px;
         font-family: 'Cormorant SC';
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
 
         span {
-          font-family: 'RIDIBatang';
-          font-size: 13px;
+          margin: 0 5px;
+          color: #666;
+        }
+
+        .count-item {
+          color: #666;
+          border-radius: 2px;
+          text-align: center;
+          width: 50px;
+          color: #999;
+
+          >div {
+            &:first-child {
+              font-size: 26px;
+              font-weight: 800;
+              color: #907d9e;
+              margin-bottom: 5px;
+            }
+          }
         }
       }
     }
@@ -1067,39 +1084,27 @@ html {
     .gallery {  
       .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(3, 80px);
+        grid-template-columns: repeat(2, 150px);
         column-gap: 5px;
         row-gap: 5px;
         justify-content: center;
 
-        @media screen and (min-width: 340px) {
-          grid-template-columns: repeat(3, 100px);
-        }
-
         @media screen and (min-width: 768px) {
-          grid-template-columns: repeat(3, 200px);
+          grid-template-columns: repeat(4, 150px);
         }
 
         @media screen and (min-width: 1024px) {
-          grid-template-columns: repeat(3, 250px);
+          grid-template-columns: repeat(4, 200px);
         }
 
 
         >.photo-item {
           width: 100%;
-          height: 120px;
+          height: 225px;
           cursor: pointer;
-
-          @media screen and (min-width: 340px) {
-            height: 150px;
-          }
-  
-          @media screen and (min-width: 768px) {
-            height: 300px;
-          }
   
           @media screen and (min-width: 1024px) {
-            height: 375px;
+            height: 300px;
           }
   
 
@@ -1131,6 +1136,53 @@ html {
         img {
           width: 20px;
           margin-bottom: 5px;
+        }
+      }
+
+      .scroll-container {
+        
+        .photo-wrapper {
+          display: flex;
+          width: fit-content;
+          padding: 10px 20px;
+
+          .photo-page {
+            display: grid;
+            grid-template-columns: repeat(2, 160px);
+            column-gap: 15px;
+            row-gap: 15px;
+            justify-content: center;
+          }
+
+          .photo-page + .photo-page {
+            margin-left: 15px;
+          }
+
+          .mobile-photo-item {
+            width: 160px;
+            height: 240px;
+    
+            img {
+              width: inherit;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 15px;
+            }
+          }
+        }
+      }
+
+      .scroll-info {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color: #666;
+        margin: 20px auto 0;
+        width: fit-content;
+
+        img {
+          margin-right: 5px;
+          width: 24px;
         }
       }
     }
