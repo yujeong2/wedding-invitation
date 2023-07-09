@@ -46,7 +46,7 @@ export const shareKakao = () => {
       content: {
         title: '김지환 ♥ 최유정의 결혼식에 초대합니다.',
         description: '23.09.09 PM 2:30 · 엘리에나호텔',
-        imageUrl: 'https://i.postimg.cc/sgr0RtYW/6.jpg',
+        imageUrl: 'https://i.postimg.cc/6Wr3MfXf/kakaoshare.jpg',
         link: {
           mobileWebUrl: process.env.REACT_APP_MAIN_LINK,
           webUrl: process.env.REACT_APP_MAIN_LINK,
