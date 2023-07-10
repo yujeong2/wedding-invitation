@@ -22,10 +22,11 @@ import GuestBook from './components/GuestBook';
 import WriteModal from './components/GuestBook/WriteModal';
 import DeleteModal from './components/GuestBook/DeleteModal';
 
-import mainImg from './assets/photo/main.jpg';
+import mainImg from './assets/photo/main3.jpg';
 import flowerIcon from './assets/icons/daisy.png';
 import linkIcon from './assets/icons/link.png';
 import kakaoIcon from './assets/icons/kakao-talk.png';
+import leafIcon from './assets/icons/green-tea.png';
 
 import purpleImg from './assets/background/purple.png';
 import leafImg from './assets/background/leaf.png';
@@ -186,20 +187,12 @@ function App() {
       </div>
       <div className="content" id="smooth-scroll">
         <div className="main">
-          <img src={mainImg} alt="" />
-          <div className="info-area">
-            <div className="name">
-              <div>
-                김지환
-                <p>KIM JIHWAN</p>
-              </div>
-              <div>
-                최유정
-                <p>CHOI YUJEONG</p>
-              </div>
-            </div>
+          <img className="main-img" src={mainImg} alt="" />
+          <div className="invite-text">
+            <img src={leafIcon} alt="" />
+            <p>저희 두 사람의 특별한 시작을</p>
+            <p>소중한 분들과 함께하고 싶습니다.</p>
           </div>
-          <div className="img-decoration">our wedding day</div>
         </div>
         <div className="invite" ref={inviteRef}>
           {/* <div className="title">Invitation</div> */}
@@ -231,7 +224,7 @@ function App() {
         <DDay />
         <Gallery handleClickImage={handleClickImage} />
         <div className="quiz">
-          <div className="sub-title">join us</div>
+          <div className="sub-title">JOIN US</div>
           <div className="title">신랑신부 퀴즈 풀기</div>
           <div className="quiz-wrapper">
             <img src={basketImg} alt="" />
