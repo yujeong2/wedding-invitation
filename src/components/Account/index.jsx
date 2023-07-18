@@ -22,8 +22,8 @@ const accountInfo = {
       {
         type: '어머니',
         name: '소혜경',
-        bank: '농협은행',
-        account: '302-0646-8247-31',
+        bank: '우리은행',
+        account: '810101-04-141235',
         kakao: 'https://qr.kakaopay.com/Ej8zDFrIE',
       },
     ],

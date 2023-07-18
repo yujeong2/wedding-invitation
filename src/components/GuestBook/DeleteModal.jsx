@@ -48,7 +48,7 @@ function GuestBookModal({
         <div className={`delete-modal ${isMobileOnly ? 'mobile' : 'web'}`}>
           <div className="title-wrapper">
             <div className="modal-title">메세지 삭제</div>
-            <button type="button" onClick={() => handleDeleteModal('close')}>
+            <button type="button" onClick={() => handleDeleteModal()}>
               <img src={closeIcon} alt="" />
             </button>
           </div>
