@@ -23,7 +23,7 @@ const accountInfo = {
         type: '어머니',
         name: '소혜경',
         bank: '우리은행',
-        account: '810101-04-141235',
+        account: '1002-849-534622 ',
         kakao: 'https://qr.kakaopay.com/Ej8zDFrIE',
       },
     ],
@@ -130,6 +130,10 @@ function Account(props) {
                       className="kakao"
                       onClick={(e) => handleClickKakaoPay(e, item)}
                       aria-hidden="true"
+                      style={{
+                        visibility:
+                          item.bank === '우리은행' ? 'hidden' : 'visible',
+                      }}
                     >
                       <img src={kakaopayIcon} alt="" /> 송금
                     </div>
