@@ -3,6 +3,7 @@
 react/no-array-index-key,no-nested-ternary, operator-linebreak */
 
 import React, { useRef, useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 import { quizList } from './data';
 
@@ -12,10 +13,11 @@ import correctIcon from '../../assets/icons/correct.png';
 import wrongIcon from '../../assets/icons/wrong.png';
 import mainImg from '../../assets/photo/18.jpg';
 
-import { getGoogleSheet } from '../../hooks/useGoogleSheet';
+import useGoogleSheet, { getGoogleSheet } from '../../hooks/useGoogleSheet';
 
 export default function Quiz({ handleCloseQuiz }) {
   const googleRows = useRef(null);
+  const [rows] = useGoogleSheet('1748559023');
 
   const [current, setCurrent] = useState(0);
   const [data, setData] = useState({
@@ -27,8 +29,20 @@ export default function Quiz({ handleCloseQuiz }) {
   const [loading, setLoading] = useState(false);
   const [inputCheck, setInputCheck] = useState('');
 
+  useEffect(() => {
+    googleRows.current = rows;
+  }, [rows]);
+
   const handleAddRow = async () => {
-    if (!data.name || data.name.length < 2) {
+    if (
+      rows.findIndex(
+        (row) => row.name === data.name && row.phone === data.phone,
+      ) > -1
+    ) {
+      toast.error('이미 제출하셨습니다.', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else if (!data.name || data.name.length < 2) {
       setInputCheck('name');
     } else if (!data.phone || data.phone.length !== 4 || !Number(data.phone)) {
       setInputCheck('phone');
